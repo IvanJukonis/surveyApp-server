@@ -6,6 +6,6 @@ const ocurrenceLocationController = require('../controllers/ocurrenceLocation');
 
 router
   .post('/', ocurrenceLocationController.createOcurrenceLocation)
-  .get('/', ocurrenceLocationController.getAllOcurrenceLocation);
+  .get('/', ocurrenceLocationController.getAllOcurrenceLocations);
 
 module.exports = router;

@@ -6,6 +6,6 @@ const vehicleController = require('../controllers/vehicle');
 
 router
   .post('/', vehicleController.createVehicle)
-  .get('/', vehicleController.getAllVehicle);
+  .get('/', vehicleController.getVehicles);
 
 module.exports = router;

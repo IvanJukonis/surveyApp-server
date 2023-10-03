@@ -2,7 +2,6 @@ const vehicles = require('../models/Vehicle');
 
 const getVehicles = (req, res) => {
   vehicles.find()
-    .populate('involved')
     .then((data) => {
       if (data) {
         res.status(200).json({
@@ -12,7 +11,7 @@ const getVehicles = (req, res) => {
       }
     })
     .catch((error) => res.status(500).json({
-      message: 'An error ocurred',
+      message: 'An error ocurredd',
       error,
     }));
 };

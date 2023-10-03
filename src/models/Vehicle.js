@@ -1,4 +1,3 @@
-const { number } = require('joi');
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
@@ -6,7 +5,7 @@ const { Schema } = mongoose;
 const vehicleSchema = new Schema({
   involved: {
     type: [Schema.Types.ObjectId],
-    ref: 'Trainer',
+    ref: 'Involved',
     required: true,
   },
   dominio: {
@@ -43,9 +42,9 @@ const vehicleSchema = new Schema({
     required: true,
   },
   año: {
-    type: number,
-    minLength: 4,
-    maxLength: 4,
+    type: Number,
+    minLength: 3,
+    maxLength: 5,
     required: true,
   },
   descripcionDaños: {
