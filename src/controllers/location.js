@@ -1,6 +1,6 @@
-const OcurrenceLocation = require('../models/OccurrenceLocation');
+const Location = require('../models/Location');
 
-const createOcurrenceLocation = (req, res) => {
+const createLocation = (req, res) => {
   const {
     calleVA,
     calleVT,
@@ -16,7 +16,7 @@ const createOcurrenceLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  OcurrenceLocation.create({
+  Location.create({
     calleVA,
     calleVT,
     direccionVA,
@@ -31,7 +31,7 @@ const createOcurrenceLocation = (req, res) => {
     localidad,
   })
     .then((result) => res.status(201).json({
-      message: 'OcurrenceLocation created successfuly',
+      message: 'Location created successfuly',
       data: result,
       error: false,
     }))
@@ -49,7 +49,7 @@ const createOcurrenceLocation = (req, res) => {
     });
 };
 
-const updateOcurrenceLocation = (req, res) => {
+const updateLocation = (req, res) => {
   const { id } = req.params;
   const {
     calleVA,
@@ -66,7 +66,7 @@ const updateOcurrenceLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  OcurrenceLocation.findByIdAndUpdate(
+  Location.findByIdAndUpdate(
     id,
     {
       calleVA,
@@ -87,7 +87,7 @@ const updateOcurrenceLocation = (req, res) => {
     .then((result) => {
       if (!result) {
         return res.status(404).json({
-          message: `OcurrenceLocation with id: ${id} was not found`,
+          message: `Location with id: ${id} was not found`,
           error: true,
         });
       }
@@ -96,11 +96,11 @@ const updateOcurrenceLocation = (req, res) => {
     .catch((error) => res.status(500).json(error));
 };
 
-const getAllOcurrenceLocations = (req, res) => {
-  OcurrenceLocation.find()
-    .then((ocurrenceLocations) => res.status(200).json({
-      message: 'Complete ocurrenceLocations list',
-      data: ocurrenceLocations,
+const getAllLocations = (req, res) => {
+  Location.find()
+    .then((locations) => res.status(200).json({
+      message: 'Complete locations list',
+      data: locations,
       error: false,
     }))
     .catch((error) => res.status(500).json({
@@ -111,17 +111,17 @@ const getAllOcurrenceLocations = (req, res) => {
 
 const getById = (req, res) => {
   const { id } = req.params;
-  OcurrenceLocation.findById(id)
-    .then((ocurrenceLocation) => {
-      if (ocurrenceLocation) {
+  Location.findById(id)
+    .then((location) => {
+      if (location) {
         res.status(200).json({
-          message: 'OcurrenceLocation found!',
-          data: ocurrenceLocation,
+          message: 'Location found!',
+          data: location,
           error: false,
         });
       } else {
         res.status(404).json({
-          message: 'OcurrenceLocation not found',
+          message: 'Location not found',
         });
       }
     })
@@ -131,29 +131,29 @@ const getById = (req, res) => {
     }));
 };
 
-const deleteOcurrenceLocation = async (req, res) => {
+const deleteLocation = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const ocurrenceLocationExist = await OcurrenceLocation.findById(id);
+    const locationExist = await Location.findById(id);
 
-    if (!ocurrenceLocationExist) {
+    if (!locationExist) {
       return res.status(404).send('ID was not found');
     }
 
-    await OcurrenceLocation.findByIdAndDelete(id);
+    await Location.findByIdAndDelete(id);
 
-    res.send('OcurrenceLocation has been deleted');
+    res.send('Location has been deleted');
   } catch (error) {
-    res.status(500).send('OcurrenceLocation could not be deleted');
+    res.status(500).send('Location could not be deleted');
   }
   return null;
 };
 
 module.exports = {
-  updateOcurrenceLocation,
-  deleteOcurrenceLocation,
-  createOcurrenceLocation,
-  getAllOcurrenceLocations,
+  updateLocation,
+  deleteLocation,
+  createLocation,
+  getAllLocations,
   getById,
 };

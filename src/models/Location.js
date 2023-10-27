@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const ocurrenceLocationSchema = new Schema({
+const locationSchema = new Schema({
   calleVA: {
     type: String,
     required: true,
@@ -75,4 +75,4 @@ const ocurrenceLocationSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('ocurrenceLocation', ocurrenceLocationSchema);
+module.exports = mongoose.model('location', locationSchema);
