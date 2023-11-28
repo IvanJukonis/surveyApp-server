@@ -1,4 +1,55 @@
-const Location = require('../models/Location');
+const Locations = require('../models/Location');
+
+const getLocations = async (req, res) => {
+  try {
+    const locations = await Locations.find();
+
+    if (locations.length > 0) {
+      return res.status(200).json({
+        message: 'Locations list',
+        data: locations,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'No locations found',
+      data: null,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+      data: null,
+      error: true,
+    });
+  }
+};
+
+const getLocationById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const location = await Location.findById(id);
+
+    if (location) {
+      return res.status(200).json({
+        message: 'Location found',
+        data: location,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Location not found',
+      data: null,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+      data: null,
+      error: true,
+    });
+  }
+};
 
 const createLocation = (req, res) => {
   const {
@@ -96,41 +147,6 @@ const updateLocation = (req, res) => {
     .catch((error) => res.status(500).json(error));
 };
 
-const getAllLocations = (req, res) => {
-  Location.find()
-    .then((locations) => res.status(200).json({
-      message: 'Complete locations list',
-      data: locations,
-      error: false,
-    }))
-    .catch((error) => res.status(500).json({
-      message: 'An error ocurred',
-      error,
-    }));
-};
-
-const getById = (req, res) => {
-  const { id } = req.params;
-  Location.findById(id)
-    .then((location) => {
-      if (location) {
-        res.status(200).json({
-          message: 'Location found!',
-          data: location,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Location not found',
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: 'An error ocurred',
-      error,
-    }));
-};
-
 const deleteLocation = async (req, res) => {
   try {
     const { id } = req.params;
@@ -154,6 +170,6 @@ module.exports = {
   updateLocation,
   deleteLocation,
   createLocation,
-  getAllLocations,
-  getById,
+  getLocations,
+  getLocationById,
 };

@@ -1,64 +1,59 @@
-const vehicles = require('../models/Vehicle');
+const Vehicles = require('../models/Vehicle');
 
-const getVehicles = (req, res) => {
-  vehicles.find()
-    .then((data) => {
-      if (data) {
-        res.status(200).json({
-          message: 'All vehicles',
-          data,
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: 'An error ocurredd',
-      error,
-    }));
-};
+const getVehicles = async (req, res) => {
+  try {
+    const vehicles = await Vehicles.find();
 
-const getVehicleById = (req, res) => {
-  const { id } = req.params;
-
-  vehicles.findById(id)
-    .populate('involved')
-    .then((data) => {
-      if (data) {
-        res.status(200).json({
-          message: 'Vehicle Found',
-          data,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Vehicle not found',
-          error: true,
-        });
-      }
-    })
-    .catch((error) => {
-      res.status(400).json({
-        message: 'An error ocurred',
-        error: error.msg,
+    if (vehicles.length > 0) {
+      return res.status(200).json({
+        message: 'Vehicles list',
+        data: vehicles,
+        error: false,
       });
+    }
+    return res.status(404).json({
+      message: 'No vehicles found',
+      data: null,
+      error: true,
     });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+      data: null,
+      error: true,
+    });
+  }
 };
-const updateVehicle = (req, res) => {
-  const { id } = req.params;
 
-  const {
-    involved,
-    dominio,
-    marca,
-    modelo,
-    color,
-    uso,
-    año,
-    descripcionDaños,
-  } = req.body;
+const getVehicleById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const vehicle = await Vehicles.findById(id).populate('involved');
 
-  vehicles.findByIdAndUpdate(
-    id,
-    {
+    if (vehicle) {
+      return res.status(200).json({
+        message: 'Vehicle Found',
+        data: vehicle,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Vehicle not found',
+      data: null,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Request failed due to a server error',
+      data: null,
+      error: true,
+    });
+  }
+};
+
+const createVehicle = async (req, res) => {
+  try {
+    const {
       involved,
       dominio,
       marca,
@@ -67,85 +62,107 @@ const updateVehicle = (req, res) => {
       uso,
       año,
       descripcionDaños,
-    },
-    { new: true },
-  )
-    .then((result) => {
-      if (result) {
-        res.status(201).json({
-          message: 'Vehicle Updated',
-          result,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Vehicle not found',
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: 'An error ocurred',
-      error,
-    }));
+    } = req.body;
+
+    const newVehicle = await Vehicles.create({
+      involved,
+      dominio,
+      marca,
+      modelo,
+      color,
+      uso,
+      año,
+      descripcionDaños,
+    });
+
+    return res.status(201).json({
+      message: 'Vehicle created',
+      data: newVehicle,
+      error: false,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error,
+      data: null,
+      error: true,
+    });
+  }
 };
 
-const deleteVehicle = (req, res) => {
-  const { id } = req.params;
-  vehicles.findByIdAndDelete(id)
-    .then((result) => {
-      if (result) {
-        res.status(200).json({
-          message: `Vehicle ${id} deleted`,
-          data: result,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Vehicle not found',
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: 'Error in the request',
-      error,
-    }));
-};
+const updateVehicle = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      involved,
+      dominio,
+      marca,
+      modelo,
+      color,
+      uso,
+      año,
+      descripcionDaños,
+    } = req.body;
 
-const createVehicle = (req, res) => {
-  const {
-    involved,
-    dominio,
-    marca,
-    modelo,
-    color,
-    uso,
-    año,
-    descripcionDaños,
-  } = req.body;
+    const updatedVehicle = await Vehicles.findByIdAndUpdate(
+      id,
+      {
+        involved,
+        dominio,
+        marca,
+        modelo,
+        color,
+        uso,
+        año,
+        descripcionDaños,
+      },
+      { new: true },
+    );
 
-  vehicles.create({
-    involved,
-    dominio,
-    marca,
-    modelo,
-    color,
-    uso,
-    año,
-    descripcionDaños,
-  })
-    .then((data) => {
-      res.status(201).json({
-        message: 'Vehicle created',
-        data,
+    if (updatedVehicle) {
+      return res.status(200).json({
+        message: 'Vehicle updated',
+        data: updatedVehicle,
         error: false,
       });
-    })
-    .catch((error) => {
-      res.status(500).json({
-        message: 'An error ocurred',
-        error,
-      });
+    }
+    return res.status(404).json({
+      message: 'Vehicle not found',
+      data: null,
+      error: true,
     });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Request failed due to a server error',
+      data: null,
+      error: true,
+    });
+  }
+};
+
+const deleteVehicle = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedVehicle = await Vehicles.findByIdAndDelete(id);
+
+    if (deletedVehicle) {
+      return res.status(200).json({
+        message: `Vehicle ${id} deleted`,
+        data: deletedVehicle,
+        error: false,
+      });
+    }
+    return res.status(404).json({
+      message: 'Vehicle not found',
+      data: null,
+      error: true,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Request failed due to a server error',
+      data: null,
+      error: true,
+    });
+  }
 };
 
 module.exports = {

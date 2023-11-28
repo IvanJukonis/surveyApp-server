@@ -2,7 +2,7 @@ const express = require('express');
 
 const involved = require('./involved');
 const location = require('./location');
-const vehicle = require('./vehicule');
+const vehicle = require('./vehicle');
 const investigator = require('./investigator');
 
 const router = express.Router();

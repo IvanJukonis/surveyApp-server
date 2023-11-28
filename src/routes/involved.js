@@ -6,6 +6,6 @@ const involvedController = require('../controllers/involved');
 
 router
   .post('/', involvedController.createInvolved)
-  .get('/', involvedController.getAllInvolved);
+  .get('/', involvedController.getInvolved);
 
 module.exports = router;
