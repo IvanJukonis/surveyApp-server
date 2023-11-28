@@ -1,18 +1,18 @@
-const Locations = require('../models/LugarRoboRueda');
+const LugarSiniestros = require('../models/LugarRoboRueda');
 
-const getLocations = async (req, res) => {
+const getLugarSiniestro = async (req, res) => {
   try {
-    const locations = await Locations.find();
+    const lugarSiniestros = await LugarSiniestros.find();
 
-    if (locations.length > 0) {
+    if (lugarSiniestros.length > 0) {
       return res.status(200).json({
-        message: 'Locations list',
-        data: locations,
+        message: 'LugarSiniestros list',
+        data: lugarSiniestros,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No locations found',
+      message: 'No lugarSiniestros found',
       data: null,
       error: true,
     });
@@ -25,20 +25,20 @@ const getLocations = async (req, res) => {
   }
 };
 
-const getLocationById = async (req, res) => {
+const getLugarSiniestroById = async (req, res) => {
   try {
     const { id } = req.params;
-    const location = await Location.findById(id);
+    const lugarSiniestro = await LugarSiniestros.findById(id);
 
-    if (location) {
+    if (lugarSiniestro) {
       return res.status(200).json({
-        message: 'Location found',
-        data: location,
+        message: 'LugarSiniestro found',
+        data: lugarSiniestro,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'Location not found',
+      message: 'LugarSiniestro not found',
       data: null,
       error: true,
     });
@@ -51,7 +51,7 @@ const getLocationById = async (req, res) => {
   }
 };
 
-const createLocation = (req, res) => {
+const createLugarSiniestro = (req, res) => {
   const {
     calleVA,
     calleVT,
@@ -67,7 +67,7 @@ const createLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  Location.create({
+  LugarSiniestros.create({
     calleVA,
     calleVT,
     direccionVA,
@@ -82,7 +82,7 @@ const createLocation = (req, res) => {
     localidad,
   })
     .then((result) => res.status(201).json({
-      message: 'Location created successfuly',
+      message: 'LugarSiniestro created successfuly',
       data: result,
       error: false,
     }))
@@ -100,7 +100,7 @@ const createLocation = (req, res) => {
     });
 };
 
-const updateLocation = (req, res) => {
+const updateLugarSiniestro = (req, res) => {
   const { id } = req.params;
   const {
     calleVA,
@@ -117,7 +117,7 @@ const updateLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  Location.findByIdAndUpdate(
+  LugarSiniestros.findByIdAndUpdate(
     id,
     {
       calleVA,
@@ -138,7 +138,7 @@ const updateLocation = (req, res) => {
     .then((result) => {
       if (!result) {
         return res.status(404).json({
-          message: `Location with id: ${id} was not found`,
+          message: `LugarSiniestro with id: ${id} was not found`,
           error: true,
         });
       }
@@ -147,29 +147,29 @@ const updateLocation = (req, res) => {
     .catch((error) => res.status(500).json(error));
 };
 
-const deleteLocation = async (req, res) => {
+const deleteLugarSiniestro = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const locationExist = await Location.findById(id);
+    const lugarSiniestroExist = await LugarSiniestros.findById(id);
 
-    if (!locationExist) {
+    if (!lugarSiniestroExist) {
       return res.status(404).send('ID was not found');
     }
 
-    await Location.findByIdAndDelete(id);
+    await LugarSiniestros.findByIdAndDelete(id);
 
-    res.send('Location has been deleted');
+    res.send('LugarSiniestro has been deleted');
   } catch (error) {
-    res.status(500).send('Location could not be deleted');
+    res.status(500).send('LugarSiniestro could not be deleted');
   }
   return null;
 };
 
 module.exports = {
-  updateLocation,
-  deleteLocation,
-  createLocation,
-  getLocations,
-  getLocationById,
+  updateLugarSiniestro,
+  deleteLugarSiniestro,
+  createLugarSiniestro,
+  getLugarSiniestro,
+  getLugarSiniestroById,
 };

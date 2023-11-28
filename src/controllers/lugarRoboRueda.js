@@ -1,18 +1,18 @@
-const Locations = require('../models/LugarRoboRueda');
+const LugarRoboRuedas = require('../models/LugarRoboRueda');
 
-const getLocations = async (req, res) => {
+const getLugarRoboRueda = async (req, res) => {
   try {
-    const locations = await Locations.find();
+    const lugarRoboRuedas = await LugarRoboRuedas.find();
 
-    if (locations.length > 0) {
+    if (lugarRoboRuedas.length > 0) {
       return res.status(200).json({
-        message: 'Locations list',
-        data: locations,
+        message: 'LugarRoboRuedas list',
+        data: lugarRoboRuedas,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No locations found',
+      message: 'No lugarRoboRuedas found',
       data: null,
       error: true,
     });
@@ -25,20 +25,20 @@ const getLocations = async (req, res) => {
   }
 };
 
-const getLocationById = async (req, res) => {
+const getLugarRoboRuedaById = async (req, res) => {
   try {
     const { id } = req.params;
-    const location = await Location.findById(id);
+    const lugarRoboRueda = await LugarRoboRuedas.findById(id);
 
-    if (location) {
+    if (lugarRoboRueda) {
       return res.status(200).json({
-        message: 'Location found',
-        data: location,
+        message: 'LugarRoboRueda found',
+        data: lugarRoboRueda,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'Location not found',
+      message: 'LugarRoboRueda not found',
       data: null,
       error: true,
     });
@@ -51,7 +51,7 @@ const getLocationById = async (req, res) => {
   }
 };
 
-const createLocation = (req, res) => {
+const createLugarRoboRueda = (req, res) => {
   const {
     calleVA,
     calleVT,
@@ -67,7 +67,7 @@ const createLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  Location.create({
+  LugarRoboRuedas.create({
     calleVA,
     calleVT,
     direccionVA,
@@ -82,7 +82,7 @@ const createLocation = (req, res) => {
     localidad,
   })
     .then((result) => res.status(201).json({
-      message: 'Location created successfuly',
+      message: 'LugarRoboRueda created successfuly',
       data: result,
       error: false,
     }))
@@ -100,7 +100,7 @@ const createLocation = (req, res) => {
     });
 };
 
-const updateLocation = (req, res) => {
+const updateLugarRoboRueda = (req, res) => {
   const { id } = req.params;
   const {
     calleVA,
@@ -117,7 +117,7 @@ const updateLocation = (req, res) => {
     localidad,
   } = req.body;
 
-  Location.findByIdAndUpdate(
+  LugarRoboRuedas.findByIdAndUpdate(
     id,
     {
       calleVA,
@@ -138,7 +138,7 @@ const updateLocation = (req, res) => {
     .then((result) => {
       if (!result) {
         return res.status(404).json({
-          message: `Location with id: ${id} was not found`,
+          message: `LugarRoboRueda with id: ${id} was not found`,
           error: true,
         });
       }
@@ -147,29 +147,29 @@ const updateLocation = (req, res) => {
     .catch((error) => res.status(500).json(error));
 };
 
-const deleteLocation = async (req, res) => {
+const deleteLugarRoboRueda = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const locationExist = await Location.findById(id);
+    const lugarRoboRuedaExist = await LugarRoboRuedas.findById(id);
 
-    if (!locationExist) {
+    if (!lugarRoboRuedaExist) {
       return res.status(404).send('ID was not found');
     }
 
-    await Location.findByIdAndDelete(id);
+    await LugarRoboRuedas.findByIdAndDelete(id);
 
-    res.send('Location has been deleted');
+    res.send('LugarRoboRueda has been deleted');
   } catch (error) {
-    res.status(500).send('Location could not be deleted');
+    res.status(500).send('LugarRoboRueda could not be deleted');
   }
   return null;
 };
 
 module.exports = {
-  updateLocation,
-  deleteLocation,
-  createLocation,
-  getLocations,
-  getLocationById,
+  updateLugarRoboRueda,
+  deleteLugarRoboRueda,
+  createLugarRoboRueda,
+  getLugarRoboRueda,
+  getLugarRoboRuedaById,
 };

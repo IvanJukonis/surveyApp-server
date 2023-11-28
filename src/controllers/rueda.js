@@ -1,18 +1,18 @@
-const Investigators = require('../models/Relevador');
+const Ruedas = require('../models/Rueda');
 
-const getInvestigators = async (req, res) => {
+const getRueda = async (req, res) => {
   try {
-    const investigators = await Investigators.find();
+    const ruedas = await Ruedas.find();
 
-    if (investigators.length > 0) {
+    if (ruedas.length > 0) {
       return res.status(200).json({
-        message: 'Investigators list',
-        data: investigators,
+        message: 'Ruedas list',
+        data: ruedas,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No investigators found',
+      message: 'No ruedas found',
       data: null,
       error: true,
     });
@@ -25,19 +25,19 @@ const getInvestigators = async (req, res) => {
   }
 };
 
-const getInvestigatorById = async (req, res) => {
+const getRuedaById = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findById(id);
-    if (investigators) {
+    const ruedas = await Ruedas.findById(id);
+    if (ruedas) {
       res.status(200).json({
-        message: 'Investigator found',
-        data: investigators,
+        message: 'Rueda found',
+        data: ruedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Rueda not found',
         data: null,
         error: true,
       });
@@ -51,7 +51,7 @@ const getInvestigatorById = async (req, res) => {
   }
 };
 
-const createInvestigator = async (req, res) => {
+const createRueda = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -86,7 +86,7 @@ const createInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.create({
+    const ruedas = await Ruedas.create({
       firstName,
       lastName,
       dni,
@@ -120,8 +120,8 @@ const createInvestigator = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Investigator created',
-      data: investigators,
+      message: 'Rueda created',
+      data: ruedas,
       error: false,
     });
   } catch (error) {
@@ -133,7 +133,7 @@ const createInvestigator = async (req, res) => {
   }
 };
 
-const updateInvestigator = async (req, res) => {
+const updateRueda = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -170,7 +170,7 @@ const updateInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.findByIdAndUpdate(
+    const ruedas = await Ruedas.findByIdAndUpdate(
       id,
       {
         firstName,
@@ -207,15 +207,15 @@ const updateInvestigator = async (req, res) => {
       { new: true },
     );
 
-    if (investigators) {
+    if (ruedas) {
       res.status(201).json({
-        message: 'Investigator updated',
-        data: investigators,
+        message: 'Rueda updated',
+        data: ruedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Rueda not found',
         data: null,
         error: true,
       });
@@ -229,19 +229,19 @@ const updateInvestigator = async (req, res) => {
   }
 };
 
-const deleteInvestigator = async (req, res) => {
+const deleteRueda = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findByIdAndDelete(id);
-    if (investigators) {
+    const ruedas = await Ruedas.findByIdAndDelete(id);
+    if (ruedas) {
       res.status(200).json({
-        message: `Investigator ${id} deleted`,
-        data: investigators,
+        message: `Rueda ${id} deleted`,
+        data: ruedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Rueda not found',
         data: null,
         error: false,
       });
@@ -256,9 +256,9 @@ const deleteInvestigator = async (req, res) => {
 };
 
 module.exports = {
-  getInvestigators,
-  getInvestigatorById,
-  createInvestigator,
-  updateInvestigator,
-  deleteInvestigator,
+  getRueda,
+  getRuedaById,
+  createRueda,
+  updateRueda,
+  deleteRueda,
 };

@@ -1,18 +1,18 @@
-const Involved = require('../models/Involucrado');
+const Involucrado = require('../models/Involucrado');
 
-const getInvolved = async (req, res) => {
+const getInvolucrado = async (req, res) => {
   try {
-    const involved = await Involved.find();
+    const involucrado = await Involucrado.find();
 
-    if (involved.length > 0) {
+    if (involucrado.length > 0) {
       return res.status(200).json({
-        message: 'Involved list',
-        data: involved,
+        message: 'Involucrado list',
+        data: involucrado,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No Involved found',
+      message: 'No Involucrado found',
       data: null,
       error: true,
     });
@@ -25,20 +25,20 @@ const getInvolved = async (req, res) => {
   }
 };
 
-const getInvolvedById = (req, res) => {
+const getInvolucradoById = (req, res) => {
   const { id } = req.params;
 
-  Involved.findById(id)
-    .then((involved) => {
-      if (involved) {
+  Involucrado.findById(id)
+    .then((involucrado) => {
+      if (involucrado) {
         res.status(200).json({
-          message: 'Involved Found',
-          data: involved,
+          message: 'Involucrado Found',
+          data: involucrado,
           error: false,
         });
       } else {
         res.status(404).json({
-          message: 'Involved not found',
+          message: 'Involucrado not found',
           error: true,
         });
       }
@@ -52,7 +52,7 @@ const getInvolvedById = (req, res) => {
     });
 };
 
-const createInvolved = async (req, res) => {
+const createInvolucrado = async (req, res) => {
   const {
     nombre,
     apellido,
@@ -73,7 +73,7 @@ const createInvolved = async (req, res) => {
     pais,
   } = req.body;
   try {
-    const involved = await Involved.create({
+    const involucrado = await Involucrado.create({
       nombre,
       apellido,
       DNI,
@@ -94,8 +94,8 @@ const createInvolved = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Involved created',
-      data: involved,
+      message: 'Involucrado created',
+      data: involucrado,
       error: false,
     });
   } catch (error) {
@@ -107,7 +107,7 @@ const createInvolved = async (req, res) => {
   }
 };
 
-const updateInvolved = (req, res) => {
+const updateInvolucrado = (req, res) => {
   const { id } = req.params;
 
   const {
@@ -130,7 +130,7 @@ const updateInvolved = (req, res) => {
     pais,
   } = req.body;
 
-  Involved.findByIdAndUpdate(
+  Involucrado.findByIdAndUpdate(
     id,
     {
       nombre,
@@ -153,16 +153,16 @@ const updateInvolved = (req, res) => {
     },
     { new: true },
   )
-    .then((involved) => {
-      if (involved) {
+    .then((involucrado) => {
+      if (involucrado) {
         res.status(201).json({
-          message: 'Involved updated',
-          data: involved,
+          message: 'Involucrado updated',
+          data: involucrado,
           error: false,
         });
       } else {
         res.status(404).json({
-          message: 'Involved not found',
+          message: 'Involucrado not found',
           data: null,
           error: true,
         });
@@ -175,19 +175,19 @@ const updateInvolved = (req, res) => {
     }));
 };
 
-const deleteInvolved = (req, res) => {
+const deleteInvolucrado = (req, res) => {
   const { id } = req.params;
-  Involved.findByIdAndDelete(id)
+  Involucrado.findByIdAndDelete(id)
     .then((result) => {
       if (result) {
         res.status(200).json({
-          message: `Involved ${id} deleted`,
+          message: `Involucrado ${id} deleted`,
           data: result,
           error: false,
         });
       } else {
         res.status(404).json({
-          message: 'Involved not found',
+          message: 'Involucrado not found',
         });
       }
     })
@@ -198,9 +198,9 @@ const deleteInvolved = (req, res) => {
 };
 
 module.exports = {
-  createInvolved,
-  getInvolved,
-  updateInvolved,
-  deleteInvolved,
-  getInvolvedById,
+  createInvolucrado,
+  getInvolucrado,
+  updateInvolucrado,
+  deleteInvolucrado,
+  getInvolucradoById,
 };

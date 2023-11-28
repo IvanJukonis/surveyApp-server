@@ -1,18 +1,18 @@
-const Vehicles = require('../models/Vehiculo');
+const Vehiculos = require('../models/Vehiculo');
 
-const getVehicles = async (req, res) => {
+const getVehiculo = async (req, res) => {
   try {
-    const vehicles = await Vehicles.find();
+    const vehiculos = await Vehiculos.find();
 
-    if (vehicles.length > 0) {
+    if (vehiculos.length > 0) {
       return res.status(200).json({
-        message: 'Vehicles list',
-        data: vehicles,
+        message: 'Vehiculos list',
+        data: vehiculos,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No vehicles found',
+      message: 'No vehiculos found',
       data: null,
       error: true,
     });
@@ -25,20 +25,20 @@ const getVehicles = async (req, res) => {
   }
 };
 
-const getVehicleById = async (req, res) => {
+const getVehiculoById = async (req, res) => {
   try {
     const { id } = req.params;
-    const vehicle = await Vehicles.findById(id).populate('involved');
+    const vehiculo = await Vehiculos.findById(id).populate('involved');
 
-    if (vehicle) {
+    if (vehiculo) {
       return res.status(200).json({
-        message: 'Vehicle Found',
-        data: vehicle,
+        message: 'Vehiculo Found',
+        data: vehiculo,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'Vehicle not found',
+      message: 'Vehiculo not found',
       data: null,
       error: true,
     });
@@ -51,7 +51,7 @@ const getVehicleById = async (req, res) => {
   }
 };
 
-const createVehicle = async (req, res) => {
+const createVehiculo = async (req, res) => {
   try {
     const {
       involved,
@@ -64,7 +64,7 @@ const createVehicle = async (req, res) => {
       descripcionDaños,
     } = req.body;
 
-    const newVehicle = await Vehicles.create({
+    const newVehiculo = await Vehiculos.create({
       involved,
       dominio,
       marca,
@@ -76,8 +76,8 @@ const createVehicle = async (req, res) => {
     });
 
     return res.status(201).json({
-      message: 'Vehicle created',
-      data: newVehicle,
+      message: 'Vehiculo created',
+      data: newVehiculo,
       error: false,
     });
   } catch (error) {
@@ -89,7 +89,7 @@ const createVehicle = async (req, res) => {
   }
 };
 
-const updateVehicle = async (req, res) => {
+const updateVehiculo = async (req, res) => {
   try {
     const { id } = req.params;
     const {
@@ -103,7 +103,7 @@ const updateVehicle = async (req, res) => {
       descripcionDaños,
     } = req.body;
 
-    const updatedVehicle = await Vehicles.findByIdAndUpdate(
+    const updatedVehiculo = await Vehiculos.findByIdAndUpdate(
       id,
       {
         involved,
@@ -118,15 +118,15 @@ const updateVehicle = async (req, res) => {
       { new: true },
     );
 
-    if (updatedVehicle) {
+    if (updatedVehiculo) {
       return res.status(200).json({
-        message: 'Vehicle updated',
-        data: updatedVehicle,
+        message: 'Vehiculo updated',
+        data: updatedVehiculo,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'Vehicle not found',
+      message: 'Vehiculo not found',
       data: null,
       error: true,
     });
@@ -139,20 +139,20 @@ const updateVehicle = async (req, res) => {
   }
 };
 
-const deleteVehicle = async (req, res) => {
+const deleteVehiculo = async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedVehicle = await Vehicles.findByIdAndDelete(id);
+    const deletedVehiculo = await Vehiculos.findByIdAndDelete(id);
 
-    if (deletedVehicle) {
+    if (deletedVehiculo) {
       return res.status(200).json({
-        message: `Vehicle ${id} deleted`,
-        data: deletedVehicle,
+        message: `Vehiculo ${id} deleted`,
+        data: deletedVehiculo,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'Vehicle not found',
+      message: 'Vehiculo not found',
       data: null,
       error: true,
     });
@@ -166,9 +166,9 @@ const deleteVehicle = async (req, res) => {
 };
 
 module.exports = {
-  getVehicles,
-  getVehicleById,
-  createVehicle,
-  updateVehicle,
-  deleteVehicle,
+  getVehiculo,
+  getVehiculoById,
+  createVehiculo,
+  updateVehiculo,
+  deleteVehiculo,
 };

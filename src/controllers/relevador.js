@@ -1,18 +1,18 @@
-const Investigators = require('../models/Relevador');
+const Relevadors = require('../models/Relevador');
 
-const getInvestigators = async (req, res) => {
+const getRelevador = async (req, res) => {
   try {
-    const investigators = await Investigators.find();
+    const relevadores = await Relevadors.find();
 
-    if (investigators.length > 0) {
+    if (relevadores.length > 0) {
       return res.status(200).json({
-        message: 'Investigators list',
-        data: investigators,
+        message: 'Relevadors list',
+        data: relevadores,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No investigators found',
+      message: 'No relevadores found',
       data: null,
       error: true,
     });
@@ -25,19 +25,19 @@ const getInvestigators = async (req, res) => {
   }
 };
 
-const getInvestigatorById = async (req, res) => {
+const getRelevadorById = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findById(id);
-    if (investigators) {
+    const relevadores = await Relevadors.findById(id);
+    if (relevadores) {
       res.status(200).json({
-        message: 'Investigator found',
-        data: investigators,
+        message: 'Relevador found',
+        data: relevadores,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Relevador not found',
         data: null,
         error: true,
       });
@@ -51,7 +51,7 @@ const getInvestigatorById = async (req, res) => {
   }
 };
 
-const createInvestigator = async (req, res) => {
+const createRelevador = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -86,7 +86,7 @@ const createInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.create({
+    const relevadores = await Relevadors.create({
       firstName,
       lastName,
       dni,
@@ -120,8 +120,8 @@ const createInvestigator = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Investigator created',
-      data: investigators,
+      message: 'Relevador created',
+      data: relevadores,
       error: false,
     });
   } catch (error) {
@@ -133,7 +133,7 @@ const createInvestigator = async (req, res) => {
   }
 };
 
-const updateInvestigator = async (req, res) => {
+const updateRelevador = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -170,7 +170,7 @@ const updateInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.findByIdAndUpdate(
+    const relevadores = await Relevadors.findByIdAndUpdate(
       id,
       {
         firstName,
@@ -207,15 +207,15 @@ const updateInvestigator = async (req, res) => {
       { new: true },
     );
 
-    if (investigators) {
+    if (relevadores) {
       res.status(201).json({
-        message: 'Investigator updated',
-        data: investigators,
+        message: 'Relevador updated',
+        data: relevadores,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Relevador not found',
         data: null,
         error: true,
       });
@@ -229,19 +229,19 @@ const updateInvestigator = async (req, res) => {
   }
 };
 
-const deleteInvestigator = async (req, res) => {
+const deleteRelevador = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findByIdAndDelete(id);
-    if (investigators) {
+    const relevadores = await Relevadors.findByIdAndDelete(id);
+    if (relevadores) {
       res.status(200).json({
-        message: `Investigator ${id} deleted`,
-        data: investigators,
+        message: `Relevador ${id} deleted`,
+        data: relevadores,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Relevador not found',
         data: null,
         error: false,
       });
@@ -256,9 +256,9 @@ const deleteInvestigator = async (req, res) => {
 };
 
 module.exports = {
-  getInvestigators,
-  getInvestigatorById,
-  createInvestigator,
-  updateInvestigator,
-  deleteInvestigator,
+  getRelevador,
+  getRelevadorById,
+  createRelevador,
+  updateRelevador,
+  deleteRelevador,
 };

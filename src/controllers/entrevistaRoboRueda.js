@@ -1,18 +1,18 @@
-const Investigators = require('../models/Relevador');
+const EntrevistaRoboRueda = require('../models/EntrevistaRoboRueda');
 
-const getInvestigators = async (req, res) => {
+const getEntrevistaRoboRueda = async (req, res) => {
   try {
-    const investigators = await Investigators.find();
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.find();
 
-    if (investigators.length > 0) {
+    if (entrevistaRoboRuedas.length > 0) {
       return res.status(200).json({
-        message: 'Investigators list',
-        data: investigators,
+        message: 'EntrevistaRoboRuedas list',
+        data: entrevistaRoboRuedas,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No investigators found',
+      message: 'No entrevistaRoboRuedas found',
       data: null,
       error: true,
     });
@@ -25,19 +25,19 @@ const getInvestigators = async (req, res) => {
   }
 };
 
-const getInvestigatorById = async (req, res) => {
+const getEntrevistaRoboRuedaById = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findById(id);
-    if (investigators) {
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.findById(id);
+    if (entrevistaRoboRuedas) {
       res.status(200).json({
-        message: 'Investigator found',
-        data: investigators,
+        message: 'EntrevistaRoboRueda found',
+        data: entrevistaRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'EntrevistaRoboRueda not found',
         data: null,
         error: true,
       });
@@ -51,7 +51,7 @@ const getInvestigatorById = async (req, res) => {
   }
 };
 
-const createInvestigator = async (req, res) => {
+const createEntrevistaRoboRueda = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -86,7 +86,7 @@ const createInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.create({
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.create({
       firstName,
       lastName,
       dni,
@@ -120,8 +120,8 @@ const createInvestigator = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Investigator created',
-      data: investigators,
+      message: 'EntrevistaRoboRueda created',
+      data: entrevistaRoboRuedas,
       error: false,
     });
   } catch (error) {
@@ -133,7 +133,7 @@ const createInvestigator = async (req, res) => {
   }
 };
 
-const updateInvestigator = async (req, res) => {
+const updateEntrevistaRoboRueda = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -170,7 +170,7 @@ const updateInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.findByIdAndUpdate(
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.findByIdAndUpdate(
       id,
       {
         firstName,
@@ -207,15 +207,15 @@ const updateInvestigator = async (req, res) => {
       { new: true },
     );
 
-    if (investigators) {
+    if (entrevistaRoboRuedas) {
       res.status(201).json({
-        message: 'Investigator updated',
-        data: investigators,
+        message: 'EntrevistaRoboRueda updated',
+        data: entrevistaRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'EntrevistaRoboRueda not found',
         data: null,
         error: true,
       });
@@ -229,19 +229,19 @@ const updateInvestigator = async (req, res) => {
   }
 };
 
-const deleteInvestigator = async (req, res) => {
+const deleteEntrevistaRoboRueda = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findByIdAndDelete(id);
-    if (investigators) {
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.findByIdAndDelete(id);
+    if (entrevistaRoboRuedas) {
       res.status(200).json({
-        message: `Investigator ${id} deleted`,
-        data: investigators,
+        message: `EntrevistaRoboRueda ${id} deleted`,
+        data: entrevistaRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'EntrevistaRoboRueda not found',
         data: null,
         error: false,
       });
@@ -256,9 +256,9 @@ const deleteInvestigator = async (req, res) => {
 };
 
 module.exports = {
-  getInvestigators,
-  getInvestigatorById,
-  createInvestigator,
-  updateInvestigator,
-  deleteInvestigator,
+  getEntrevistaRoboRueda,
+  getEntrevistaRoboRuedaById,
+  createEntrevistaRoboRueda,
+  updateEntrevistaRoboRueda,
+  deleteEntrevistaRoboRueda,
 };

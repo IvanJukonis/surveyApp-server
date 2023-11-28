@@ -1,18 +1,18 @@
-const Investigators = require('../models/Relevador');
+const InspeccionRoboRuedas = require('../models/InspeccionRoboRueda');
 
-const getInvestigators = async (req, res) => {
+const getInspeccionRoboRueda = async (req, res) => {
   try {
-    const investigators = await Investigators.find();
+    const inspeccionRoboRuedas = await InspeccionRoboRuedas.find();
 
-    if (investigators.length > 0) {
+    if (inspeccionRoboRuedas.length > 0) {
       return res.status(200).json({
-        message: 'Investigators list',
-        data: investigators,
+        message: 'InspeccionRoboRuedas list',
+        data: inspeccionRoboRuedas,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No investigators found',
+      message: 'No inspeccionRoboRuedas found',
       data: null,
       error: true,
     });
@@ -25,19 +25,19 @@ const getInvestigators = async (req, res) => {
   }
 };
 
-const getInvestigatorById = async (req, res) => {
+const getInspeccionRoboRuedaById = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findById(id);
-    if (investigators) {
+    const inspeccionRoboRuedas = await InspeccionRoboRuedas.findById(id);
+    if (inspeccionRoboRuedas) {
       res.status(200).json({
-        message: 'Investigator found',
-        data: investigators,
+        message: 'InspeccionRoboRueda found',
+        data: inspeccionRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'InspeccionRoboRueda not found',
         data: null,
         error: true,
       });
@@ -51,7 +51,7 @@ const getInvestigatorById = async (req, res) => {
   }
 };
 
-const createInvestigator = async (req, res) => {
+const createInspeccionRoboRueda = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -86,7 +86,7 @@ const createInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.create({
+    const inspeccionRoboRuedas = await InspeccionRoboRuedas.create({
       firstName,
       lastName,
       dni,
@@ -120,8 +120,8 @@ const createInvestigator = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Investigator created',
-      data: investigators,
+      message: 'InspeccionRoboRueda created',
+      data: inspeccionRoboRuedas,
       error: false,
     });
   } catch (error) {
@@ -133,7 +133,7 @@ const createInvestigator = async (req, res) => {
   }
 };
 
-const updateInvestigator = async (req, res) => {
+const updateInspeccionRoboRueda = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -170,7 +170,7 @@ const updateInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.findByIdAndUpdate(
+    const inspeccionRoboRuedas = await InspeccionRoboRuedas.findByIdAndUpdate(
       id,
       {
         firstName,
@@ -207,15 +207,15 @@ const updateInvestigator = async (req, res) => {
       { new: true },
     );
 
-    if (investigators) {
+    if (inspeccionRoboRuedas) {
       res.status(201).json({
-        message: 'Investigator updated',
-        data: investigators,
+        message: 'InspeccionRoboRueda updated',
+        data: inspeccionRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'InspeccionRoboRueda not found',
         data: null,
         error: true,
       });
@@ -229,19 +229,19 @@ const updateInvestigator = async (req, res) => {
   }
 };
 
-const deleteInvestigator = async (req, res) => {
+const deleteInspeccionRoboRueda = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findByIdAndDelete(id);
-    if (investigators) {
+    const inspeccionRoboRuedas = await InspeccionRoboRuedas.findByIdAndDelete(id);
+    if (inspeccionRoboRuedas) {
       res.status(200).json({
-        message: `Investigator ${id} deleted`,
-        data: investigators,
+        message: `InspeccionRoboRueda ${id} deleted`,
+        data: inspeccionRoboRuedas,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'InspeccionRoboRueda not found',
         data: null,
         error: false,
       });
@@ -256,9 +256,9 @@ const deleteInvestigator = async (req, res) => {
 };
 
 module.exports = {
-  getInvestigators,
-  getInvestigatorById,
-  createInvestigator,
-  updateInvestigator,
-  deleteInvestigator,
+  getInspeccionRoboRueda,
+  getInspeccionRoboRuedaById,
+  createInspeccionRoboRueda,
+  updateInspeccionRoboRueda,
+  deleteInspeccionRoboRueda,
 };

@@ -1,18 +1,18 @@
-const Investigators = require('../models/Relevador');
+const Eventos = require('../models/Evento');
 
-const getInvestigators = async (req, res) => {
+const getEvento = async (req, res) => {
   try {
-    const investigators = await Investigators.find();
+    const eventos = await Eventos.find();
 
-    if (investigators.length > 0) {
+    if (eventos.length > 0) {
       return res.status(200).json({
-        message: 'Investigators list',
-        data: investigators,
+        message: 'Eventos list',
+        data: eventos,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No investigators found',
+      message: 'No eventos found',
       data: null,
       error: true,
     });
@@ -25,19 +25,19 @@ const getInvestigators = async (req, res) => {
   }
 };
 
-const getInvestigatorById = async (req, res) => {
+const getEventoById = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findById(id);
-    if (investigators) {
+    const eventos = await Eventos.findById(id);
+    if (eventos) {
       res.status(200).json({
-        message: 'Investigator found',
-        data: investigators,
+        message: 'Eento found',
+        data: eventos,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Evento not found',
         data: null,
         error: true,
       });
@@ -51,7 +51,7 @@ const getInvestigatorById = async (req, res) => {
   }
 };
 
-const createInvestigator = async (req, res) => {
+const createEvento = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -86,7 +86,7 @@ const createInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.create({
+    const eventos = await Eventos.create({
       firstName,
       lastName,
       dni,
@@ -120,8 +120,8 @@ const createInvestigator = async (req, res) => {
     });
 
     res.status(201).json({
-      message: 'Investigator created',
-      data: investigators,
+      message: 'Evento created',
+      data: eventos,
       error: false,
     });
   } catch (error) {
@@ -133,7 +133,7 @@ const createInvestigator = async (req, res) => {
   }
 };
 
-const updateInvestigator = async (req, res) => {
+const updateEvento = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -170,7 +170,7 @@ const updateInvestigator = async (req, res) => {
   } = req.body;
 
   try {
-    const investigators = await Investigators.findByIdAndUpdate(
+    const eventos = await Eventos.findByIdAndUpdate(
       id,
       {
         firstName,
@@ -207,15 +207,15 @@ const updateInvestigator = async (req, res) => {
       { new: true },
     );
 
-    if (investigators) {
+    if (eventos) {
       res.status(201).json({
-        message: 'Investigator updated',
-        data: investigators,
+        message: 'Evento updated',
+        data: eventos,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Evento not found',
         data: null,
         error: true,
       });
@@ -229,19 +229,19 @@ const updateInvestigator = async (req, res) => {
   }
 };
 
-const deleteInvestigator = async (req, res) => {
+const deleteEvento = async (req, res) => {
   const { id } = req.params;
   try {
-    const investigators = await Investigators.findByIdAndDelete(id);
-    if (investigators) {
+    const eventos = await Eventos.findByIdAndDelete(id);
+    if (eventos) {
       res.status(200).json({
-        message: `Investigator ${id} deleted`,
-        data: investigators,
+        message: `Evento ${id} deleted`,
+        data: eventos,
         error: false,
       });
     } else {
       res.status(404).json({
-        message: 'Investigator not found',
+        message: 'Evento not found',
         data: null,
         error: false,
       });
@@ -256,9 +256,9 @@ const deleteInvestigator = async (req, res) => {
 };
 
 module.exports = {
-  getInvestigators,
-  getInvestigatorById,
-  createInvestigator,
-  updateInvestigator,
-  deleteInvestigator,
+  getEvento,
+  getEventoById,
+  createEvento,
+  updateEvento,
+  deleteEvento,
 };
