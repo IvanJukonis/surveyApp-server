@@ -1,4 +1,4 @@
-const Investigators = require('../models/Investigator');
+const Investigators = require('../models/Relevador');
 
 const getInvestigators = async (req, res) => {
   try {

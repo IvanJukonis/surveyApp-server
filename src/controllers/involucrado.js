@@ -1,4 +1,4 @@
-const Involved = require('../models/Involved');
+const Involved = require('../models/Involucrado');
 
 const getInvolved = async (req, res) => {
   try {
