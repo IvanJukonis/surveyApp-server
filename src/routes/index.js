@@ -10,6 +10,7 @@ const lugarSiniestro = require('./lugarSiniestro');
 const rueda = require('./rueda');
 const evento = require('./evento');
 const novedad = require('./novedad');
+const siniestro = require('./siniestro');
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.use('/lugarSiniestro', lugarSiniestro);
 router.use('/rueda', rueda);
 router.use('/evento', evento);
 router.use('/novedad', novedad);
+router.use('/siniestro', siniestro);
 
 module.exports = router;

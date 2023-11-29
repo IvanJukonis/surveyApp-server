@@ -1,130 +1,71 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
 const siniestroSchema = new Schema({
   numSiniestro: {
-
+    type: Number,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   numPoliza: {
-
+    type: Number,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   numInforme: {
-
+    type: Number,
+    minLength: 3,
+    maxLength: 5,
+    required: true,
   },
   fechaSiniestro: {
-    ...dateTime,
+    type: Date,
+    required: true,
   },
   fechaDenuncia: {
-    ...dateTime,
+    type: Date,
+    required: true,
   },
   fechaVencimiento: {
-    ...dateTime,
+    type: Date,
+    required: true,
   },
   fechaAsignacion: {
-    ...dateTime,
+    type: Date,
+    required: true,
   },
   hrSiniestro: {
-    ...dateTime,
-  },
-  requerido: {
-    type: String,
-    enum: [''],
+    type: Date,
     required: true,
   },
   cia: {
     type: String,
-    enum: [''],
+    enum: ['San Cristobal', 'Rio Uruguay', 'Sancor', 'La Segunda', 'Rivadavia'],
     required: true,
   },
   tipo: {
     type: String,
-    enum: [''],
+    enum: ['Siniestro', 'Fraude', 'Completo'],
     required: true,
   },
-  relevamiento: {
-    type: String,
-    enum: [''],
-    required: true,
+  presencial: {
+    type: Boolean,
+    default: true,
   },
   instrucciones: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 15,
+    required: true,
   },
   denuncia: {
-
-  },
-  comisaria: {
     type: String,
-    enum: [''],
+    minLength: 3,
+    maxLength: 50,
     required: true,
-  },
-  lugar: {
-
-  },
-  conclusionDescripcion: {
-
-  },
-  conclusionLesiones: {
-
-  },
-  conclusionDaños: {
-
-  },
-  conclusionResponsabilidad: {
-
-  },
-  conclusionCredibilidad: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  conclusionRecomendacion: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  estado: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  autorizacion: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  statsSolicitudCorreccion: {
-
-  },
-  statsGramaticaProlijidad: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  statsDesarrolloSiniestro: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  fechaFinalizacion: {
-    ...dateTime,
-  },
-  fechaContactoAsegurado: {
-    ...dateTime,
-  },
-  fechaContactoTercero: {
-    ...dateTime,
-  },
-  justificaDemoras: {
-    type: String,
-    enum: [''],
-    required: true,
-  },
-  evaluacion: {
-
   },
 });
 
