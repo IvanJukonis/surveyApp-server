@@ -1,146 +1,95 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const dateTime = {
-  type: Date,
-  required: true,
-};
-
-const string = {
-  type: String,
-  minLength: 3,
-  maxLength: 15,
-  required: true,
-};
-
-const numbers = {
-  type: Number,
-  minLength: 3,
-  maxLength: 10,
-  required: true,
-};
-
-const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
-const phoneRegex = /^\d{10}$/;
-const alphanumericSpacesRegex = /^[a-zA-Z0-9\s]*$/;
-// const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
-const alphaSpacesRegex = /^[a-zA-Z\s]*$/;
-const alphaRegex = /^[a-zA-Z]*$/;
-
-const investigatorSchema = new Schema({
-  firstName: {
-    ...string,
-    match: alphaSpacesRegex,
+const relevadorSchema = new Schema({
+  tipo: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  lastName: {
-    ...string,
-    match: alphaSpacesRegex,
+  nombre: {
+
   },
-  dni: {
-    ...numbers,
-    minLength: 8,
-    maxLength: 8,
+  apellido: {
+
   },
   email: {
-    type: String,
-    match: emailRegex,
-    required: true,
+
   },
-  dBirthday: {
+  dni: {
+
+  },
+  fechaNacimiento: {
     ...dateTime,
   },
-  dHire: {
+  fechaContratacion: {
     ...dateTime,
   },
-  address: {
-    ...string,
-    match: alphanumericSpacesRegex,
+  direccion: {
+
   },
-  city: {
-    ...string,
-    match: alphaSpacesRegex,
+  localidad: {
+
   },
-  phone: {
-    ...numbers,
-    match: phoneRegex,
+  telefono: {
+
   },
-  contract: {
+  contrato: {
     type: String,
-    enum: ['labor', 'fijo', 'indefinido', 'aprendizaje', 'ocasional'],
+    enum: [''],
     required: true,
   },
-  hWork: {
+  hsLaborales: {
     ...dateTime,
   },
-  salary: {
-    ...numbers,
+  salario: {
+
   },
-  salaryUpdate: {
-    ...numbers,
-  },
-  dSalaryUpdate: {
+  fechaActualizacionSalario: {
     ...dateTime,
   },
-  socialSecurity: {
-    ...numbers,
+  numeroSeguridadSocial: {
+
   },
-  office: {
+  oficina: {
     type: String,
-    enum: ['rosario', 'buenos aires', 'cordoba', 'santa fe'],
+    enum: [''],
     required: true,
   },
-  department: {
+  departamento: {
     type: String,
-    enum: ['relevamientos', 'control', 'administrador'],
+    enum: [''],
     required: true,
   },
-  position: {
+  puesto: {
     type: String,
-    enum: ['relevador', 'controlador', 'administrador', 'consultor', 'gerente'],
+    enum: [''],
     required: true,
   },
-  children: {
-    ...numbers,
+  cantidadHijos: {
+
   },
-  maritalStatus: {
+  estadoCivil: {
     type: String,
-    enum: ['casado', 'soltero', 'viuda', 'divorciado'],
+    enum: [''],
     required: true,
   },
-  isActive: {
-    type: Boolean,
-    default: true,
+  activo: {
+
   },
-  bankAccount: {
-    ...numbers,
+  cuentaBancaria: {
+
   },
-  password: {
-    ...string,
-    match: alphaRegex,
+  nombreUsuario: {
+
   },
-  repeatPassword: {
-    ...string,
-    match: alphaRegex,
-  },
-  promedioDiasSiniestro: {
-    ...numbers,
-  },
-  promedioFaltasSiniestro: {
-    ...numbers,
-  },
-  indiceProlijidad: {
-    ...numbers,
-  },
-  indiceDesarrollo: {
-    ...numbers,
-  },
-  siniestrosMensuales: {
-    ...numbers,
-  },
-  siniestrosAnuales: {
-    ...numbers,
+  contraseña: {
+
   },
 });
 
-module.exports = mongoose.model('investigator', investigatorSchema);
+module.exports = mongoose.model('relevador', relevadorSchema);

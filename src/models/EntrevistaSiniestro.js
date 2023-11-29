@@ -1,146 +1,156 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+  string,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const dateTime = {
-  type: Date,
-  required: true,
-};
-
-const string = {
-  type: String,
-  minLength: 3,
-  maxLength: 15,
-  required: true,
-};
-
-const numbers = {
-  type: Number,
-  minLength: 3,
-  maxLength: 10,
-  required: true,
-};
-
-const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
-const phoneRegex = /^\d{10}$/;
-const alphanumericSpacesRegex = /^[a-zA-Z0-9\s]*$/;
-// const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
-const alphaSpacesRegex = /^[a-zA-Z\s]*$/;
-const alphaRegex = /^[a-zA-Z]*$/;
-
-const investigatorSchema = new Schema({
-  firstName: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  lastName: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  dni: {
-    ...numbers,
-    minLength: 8,
-    maxLength: 8,
-  },
-  email: {
-    type: String,
-    match: emailRegex,
-    required: true,
-  },
-  dBirthday: {
+const entrevistaSiniestroSchema = new Schema({
+  fechaEntrevista: {
     ...dateTime,
   },
-  dHire: {
+  hrEntrevista: {
     ...dateTime,
   },
-  address: {
-    ...string,
-    match: alphanumericSpacesRegex,
-  },
-  city: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  phone: {
-    ...numbers,
-    match: phoneRegex,
-  },
-  contract: {
+  rol: {
     type: String,
-    enum: ['labor', 'fijo', 'indefinido', 'aprendizaje', 'ocasional'],
+    enum: [''],
     required: true,
   },
-  hWork: {
-    ...dateTime,
-  },
-  salary: {
-    ...numbers,
-  },
-  salaryUpdate: {
-    ...numbers,
-  },
-  dSalaryUpdate: {
-    ...dateTime,
-  },
-  socialSecurity: {
-    ...numbers,
-  },
-  office: {
-    type: String,
-    enum: ['rosario', 'buenos aires', 'cordoba', 'santa fe'],
-    required: true,
-  },
-  department: {
-    type: String,
-    enum: ['relevamientos', 'control', 'administrador'],
-    required: true,
-  },
-  position: {
-    type: String,
-    enum: ['relevador', 'controlador', 'administrador', 'consultor', 'gerente'],
-    required: true,
-  },
-  children: {
-    ...numbers,
-  },
-  maritalStatus: {
-    type: String,
-    enum: ['casado', 'soltero', 'viuda', 'divorciado'],
-    required: true,
-  },
-  isActive: {
+  firma: {
     type: Boolean,
-    default: true,
+    default: false,
   },
-  bankAccount: {
-    ...numbers,
+  tipoEntrevista: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  password: {
+  fechaSiniestro: {
+    ...dateTime,
+  },
+  hrAproximada: {
+    ...dateTime,
+  },
+  hrNotificacion: {
+    ...dateTime,
+  },
+  hrConfirmacion: {
+    ...dateTime,
+  },
+  hrReclamo: {
+    ...dateTime,
+  },
+  relacionVh: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  habilitacionDni: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  habilitacionLc: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  habilitacionTv: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  habilitacionTa: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  aportaDni: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  aportaLc: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  aportaTv: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  aportaTa: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  lesiones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  reparaciones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  comprobantesDaños: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  tipoLesiones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  descLesiones: {
     ...string,
-    match: alphaRegex,
   },
-  repeatPassword: {
+  comprobantesLesiones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  aporteLesiones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  fotosLesiones: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  gastos: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  descGastos: {
     ...string,
-    match: alphaRegex,
   },
-  promedioDiasSiniestro: {
-    ...numbers,
+  comprobantesGastos: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  promedioFaltasSiniestro: {
-    ...numbers,
+  zonaImpactoVa: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  indiceProlijidad: {
-    ...numbers,
+  zonaImpactoVt: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  indiceDesarrollo: {
-    ...numbers,
-  },
-  siniestrosMensuales: {
-    ...numbers,
-  },
-  siniestrosAnuales: {
-    ...numbers,
+  relato: {
+    ...string,
   },
 });
 
-module.exports = mongoose.model('investigator', investigatorSchema);
+module.exports = mongoose.model('entrevistaSiniestro', entrevistaSiniestroSchema);

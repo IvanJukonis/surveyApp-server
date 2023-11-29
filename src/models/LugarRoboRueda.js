@@ -1,78 +1,56 @@
 const mongoose = require('mongoose');
+const { string } = require('./regex');
 
 const { Schema } = mongoose;
 
-const locationSchema = new Schema({
-  calleVA: {
-    type: String,
-    required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
+const lugarRoboRuedaSchema = new Schema({
+  prioridad: {
+    ...string,
   },
-  calleVT: {
-    type: String,
-    required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
-  },
-  direccionVA: {
-    type: String,
-    enum: ['SUR', 'NORTE', 'ESTE', 'OESTE', 'NORESTE', 'SURESTE', 'SUROESTE', 'NOROESTE', 'SURESTE'],
-    required: true,
-  },
-  direccionVT: {
-    type: String,
-    enum: ['SUR', 'NORTE', 'ESTE', 'OESTE', 'NORESTE', 'SURESTE', 'SUROESTE', 'NOROESTE', 'SURESTE'],
-    required: true,
-  },
-  direccionCalleVA: {
-    type: String,
-    enum: ['SUR', 'NORTE', 'ESTE', 'OESTE', 'NORESTE', 'SURESTE', 'SUROESTE', 'NOROESTE', 'SURESTE'],
-    required: true,
-  },
-  direccionCalleVT: {
-    type: String,
-    enum: ['SUR', 'NORTE', 'ESTE', 'OESTE', 'NORESTE', 'SURESTE', 'SUROESTE', 'NOROESTE', 'SURESTE'],
-    required: true,
-  },
-  estadoCalleVA: {
-    type: String,
-    enum: ['TIERRA', 'ASFALTO', 'PAVIMENTO', 'PIEDRAS', 'INDEFINIDO'],
-    required: true,
-  },
-  estadoCalleVT: {
-    type: String,
-    enum: ['TIERRA', 'ASFALTO', 'PAVIMENTO', 'PIEDRAS', 'INDEFINIDO'],
-    required: true,
-  },
-  calleAdicional: {
-    type: String,
-    required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
-  },
-  direccionCalleAdicional: {
-    type: String,
-    enum: ['SUR', 'NORTE', 'ESTE', 'OESTE', 'NORESTE', 'SURESTE', 'SUROESTE', 'NOROESTE', 'SURESTE'],
-    required: true,
+  direccion: {
+    ...string,
   },
   ciudad: {
-    type: String,
-    required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
+    ...string,
   },
-  localidad: {
+  provincia: {
+    ...string,
+  },
+  evidenciaDanos: {
     type: String,
+    enum: [''],
     required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
+  },
+  permiso: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  perros: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  alarma: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  presencia: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  disposicionVehiculo: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  usoEntorno: {
+    type: String,
+    enum: [''],
+    required: true,
   },
 });
 
-module.exports = mongoose.model('location', locationSchema);
+module.exports = mongoose.model('lugarRoboRueda', lugarRoboRuedaSchema);

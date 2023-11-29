@@ -1,146 +1,105 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+  string,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const dateTime = {
-  type: Date,
-  required: true,
-};
-
-const string = {
-  type: String,
-  minLength: 3,
-  maxLength: 15,
-  required: true,
-};
-
-const numbers = {
-  type: Number,
-  minLength: 3,
-  maxLength: 10,
-  required: true,
-};
-
-const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
-const phoneRegex = /^\d{10}$/;
-const alphanumericSpacesRegex = /^[a-zA-Z0-9\s]*$/;
-// const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
-const alphaSpacesRegex = /^[a-zA-Z\s]*$/;
-const alphaRegex = /^[a-zA-Z]*$/;
-
-const investigatorSchema = new Schema({
-  firstName: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  lastName: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  dni: {
-    ...numbers,
-    minLength: 8,
-    maxLength: 8,
-  },
-  email: {
-    type: String,
-    match: emailRegex,
-    required: true,
-  },
-  dBirthday: {
+const entrevistaRoboRuedaSchema = new Schema({
+  fechaEntrevista: {
     ...dateTime,
   },
-  dHire: {
+  hrEntrevista: {
     ...dateTime,
   },
-  address: {
-    ...string,
-    match: alphanumericSpacesRegex,
+  rol: {
+
   },
-  city: {
-    ...string,
-    match: alphaSpacesRegex,
+  firma: {
+
   },
-  phone: {
-    ...numbers,
-    match: phoneRegex,
+  tipoEntrevista: {
+
   },
-  contract: {
-    type: String,
-    enum: ['labor', 'fijo', 'indefinido', 'aprendizaje', 'ocasional'],
-    required: true,
-  },
-  hWork: {
+  fechaSiniestro: {
     ...dateTime,
   },
-  salary: {
-    ...numbers,
-  },
-  salaryUpdate: {
-    ...numbers,
-  },
-  dSalaryUpdate: {
+  hrAproximada: {
     ...dateTime,
   },
-  socialSecurity: {
-    ...numbers,
+  hrNotificacion: {
+    ...dateTime,
   },
-  office: {
-    type: String,
-    enum: ['rosario', 'buenos aires', 'cordoba', 'santa fe'],
-    required: true,
+  hrConfirmacion: {
+    ...dateTime,
   },
-  department: {
-    type: String,
-    enum: ['relevamientos', 'control', 'administrador'],
-    required: true,
+  hrReclamo: {
+    ...dateTime,
   },
-  position: {
-    type: String,
-    enum: ['relevador', 'controlador', 'administrador', 'consultor', 'gerente'],
-    required: true,
+  relacionVh: {
+
   },
-  children: {
-    ...numbers,
+  habilitacionDni: {
+
   },
-  maritalStatus: {
-    type: String,
-    enum: ['casado', 'soltero', 'viuda', 'divorciado'],
-    required: true,
+  habilitacionLc: {
+
   },
-  isActive: {
-    type: Boolean,
-    default: true,
+  habilitacionTv: {
+
   },
-  bankAccount: {
-    ...numbers,
+  habilitacionTa: {
+
   },
-  password: {
+  aportaDni: {
+
+  },
+  aportaLc: {
+
+  },
+  aportaTv: {
+
+  },
+  aportaTa: {
+
+  },
+  usoVh: {
+
+  },
+  tipoUsoVh: {
+
+  },
+  alarmaActiva: {
+
+  },
+  cierreCentralizado: {
+
+  },
+  relato: {
     ...string,
-    match: alphaRegex,
   },
-  repeatPassword: {
+  duenoPrevio: {
+
+  },
+  aportaDueñoPrevio: {
+
+  },
+  tuercaDeSeguridad: {
     ...string,
-    match: alphaRegex,
   },
-  promedioDiasSiniestro: {
-    ...numbers,
+  bulones: {
+    ...string,
   },
-  promedioFaltasSiniestro: {
-    ...numbers,
+  prestaRueda: {
+
   },
-  indiceProlijidad: {
-    ...numbers,
+  intervensionPolicial: {
+
   },
-  indiceDesarrollo: {
-    ...numbers,
-  },
-  siniestrosMensuales: {
-    ...numbers,
-  },
-  siniestrosAnuales: {
-    ...numbers,
+  actaIntervensionPolicial: {
+
   },
 });
 
-module.exports = mongoose.model('investigator', investigatorSchema);
+module.exports = mongoose.model('entrevistaRoboRueda', entrevistaRoboRuedaSchema);

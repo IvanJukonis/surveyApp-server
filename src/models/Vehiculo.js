@@ -1,59 +1,65 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const vehicleSchema = new Schema({
-  involved: {
-    type: [Schema.Types.ObjectId],
-    ref: 'Involved',
+const vehiculoSchema = new Schema({
+  rol: {
+    type: String,
+    enum: [''],
     required: true,
+  },
+  prioridad: {
+
   },
   dominio: {
-    type: String,
-    required: true,
-    minLength: 6,
-    maxLength: 7,
-    match: /^[A-Za-z0-9\s]+$/,
+
   },
   marca: {
-    type: String,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
-    required: true,
+
   },
   modelo: {
-    type: String,
-    required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z0-9\s]+$/,
+
   },
   color: {
-    type: String,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
-    required: true,
+
   },
   uso: {
     type: String,
-    enum: ['Particular', 'Profesional', 'Servicio Publico', 'Especial'],
+    enum: [''],
     required: true,
   },
-  año: {
-    type: Number,
-    minLength: 3,
-    maxLength: 5,
-    required: true,
+  fabricacion: {
+    ...dateTime,
   },
-  descripcionDaños: {
+  tipo: {
     type: String,
-    minLength: 3,
-    maxLength: 50,
-    match: /^[A-Za-z]+$/,
+    enum: [''],
+    required: true,
+  },
+  fechaAdquisicion: {
+    ...dateTime,
+  },
+  danos: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  descripcionDanos: {
+
+  },
+  alarma: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  cierreCentralizado: {
+    type: String,
+    enum: [''],
     required: true,
   },
 });
 
-module.exports = mongoose.model('vehicle', vehicleSchema);
+module.exports = mongoose.model('vehiculo', vehiculoSchema);

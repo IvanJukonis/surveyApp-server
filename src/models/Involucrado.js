@@ -1,59 +1,97 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+  string,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const vehicleSchema = new Schema({
-  involved: {
-    type: [Schema.Types.ObjectId],
-    ref: 'Involved',
-    required: true,
+const involucradoSchema = new Schema({
+  prioridad: {
+
   },
-  dominio: {
+  rol: {
     type: String,
+    enum: [''],
     required: true,
-    minLength: 6,
-    maxLength: 7,
-    match: /^[A-Za-z0-9\s]+$/,
   },
-  marca: {
+  relacion: {
     type: String,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
+    enum: [''],
     required: true,
   },
-  modelo: {
+  titular: {
     type: String,
+    enum: [''],
     required: true,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z0-9\s]+$/,
   },
-  color: {
+  nombre: {
+    ...string,
+  },
+  apelido: {
+    ...string,
+  },
+  dni: {
+
+  },
+  telefono: {
+
+  },
+  email: {
+
+  },
+  fechaNacimiento: {
+    ...dateTime,
+  },
+  domicilio: {
+    ...string,
+  },
+  ciudad: {
+    ...string,
+  },
+  pais: {
+    ...string,
+  },
+  codigoPostal: {
+
+  },
+  cuit: {
+
+  },
+  entrevistado: {
     type: String,
-    minLength: 3,
-    maxLength: 15,
-    match: /^[A-Za-z]+$/,
+    enum: [''],
     required: true,
   },
-  uso: {
+  ocupacion: {
+    ...string,
+  },
+  direccionOcupacion: {
+    ...string,
+  },
+  relacionSiniestro: {
     type: String,
-    enum: ['Particular', 'Profesional', 'Servicio Publico', 'Especial'],
+    enum: [''],
     required: true,
   },
-  año: {
-    type: Number,
-    minLength: 3,
-    maxLength: 5,
-    required: true,
-  },
-  descripcionDaños: {
+  licenciaAportada: {
     type: String,
-    minLength: 3,
-    maxLength: 50,
-    match: /^[A-Za-z]+$/,
+    enum: [''],
+    required: true,
+  },
+  licenciaVencimiento: {
+    ...dateTime,
+  },
+  licenciaHabilitada: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  licenciaCategoria: {
+    type: String,
+    enum: [''],
     required: true,
   },
 });
 
-module.exports = mongoose.model('vehicle', vehicleSchema);
+module.exports = mongoose.model('involucrado', involucradoSchema);

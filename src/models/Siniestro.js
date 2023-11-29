@@ -1,146 +1,131 @@
 const mongoose = require('mongoose');
+const {
+  dateTime,
+} = require('./regex');
 
 const { Schema } = mongoose;
 
-const dateTime = {
-  type: Date,
-  required: true,
-};
+const siniestroSchema = new Schema({
+  numSiniestro: {
 
-const string = {
-  type: String,
-  minLength: 3,
-  maxLength: 15,
-  required: true,
-};
+  },
+  numPoliza: {
 
-const numbers = {
-  type: Number,
-  minLength: 3,
-  maxLength: 10,
-  required: true,
-};
+  },
+  numInforme: {
 
-const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
-const phoneRegex = /^\d{10}$/;
-const alphanumericSpacesRegex = /^[a-zA-Z0-9\s]*$/;
-// const alphaNumericRegex = /^[a-zA-Z0-9]*$/;
-const alphaSpacesRegex = /^[a-zA-Z\s]*$/;
-const alphaRegex = /^[a-zA-Z]*$/;
-
-const investigatorSchema = new Schema({
-  firstName: {
-    ...string,
-    match: alphaSpacesRegex,
   },
-  lastName: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  dni: {
-    ...numbers,
-    minLength: 8,
-    maxLength: 8,
-  },
-  email: {
-    type: String,
-    match: emailRegex,
-    required: true,
-  },
-  dBirthday: {
+  fechaSiniestro: {
     ...dateTime,
   },
-  dHire: {
+  fechaDenuncia: {
     ...dateTime,
   },
-  address: {
-    ...string,
-    match: alphanumericSpacesRegex,
-  },
-  city: {
-    ...string,
-    match: alphaSpacesRegex,
-  },
-  phone: {
-    ...numbers,
-    match: phoneRegex,
-  },
-  contract: {
-    type: String,
-    enum: ['labor', 'fijo', 'indefinido', 'aprendizaje', 'ocasional'],
-    required: true,
-  },
-  hWork: {
+  fechaVencimiento: {
     ...dateTime,
   },
-  salary: {
-    ...numbers,
-  },
-  salaryUpdate: {
-    ...numbers,
-  },
-  dSalaryUpdate: {
+  fechaAsignacion: {
     ...dateTime,
   },
-  socialSecurity: {
-    ...numbers,
+  hrSiniestro: {
+    ...dateTime,
   },
-  office: {
+  requerido: {
     type: String,
-    enum: ['rosario', 'buenos aires', 'cordoba', 'santa fe'],
+    enum: [''],
     required: true,
   },
-  department: {
+  cia: {
     type: String,
-    enum: ['relevamientos', 'control', 'administrador'],
+    enum: [''],
     required: true,
   },
-  position: {
+  tipo: {
     type: String,
-    enum: ['relevador', 'controlador', 'administrador', 'consultor', 'gerente'],
+    enum: [''],
     required: true,
   },
-  children: {
-    ...numbers,
-  },
-  maritalStatus: {
+  relevamiento: {
     type: String,
-    enum: ['casado', 'soltero', 'viuda', 'divorciado'],
+    enum: [''],
     required: true,
   },
-  isActive: {
-    type: Boolean,
-    default: true,
+  instrucciones: {
+
   },
-  bankAccount: {
-    ...numbers,
+  denuncia: {
+
   },
-  password: {
-    ...string,
-    match: alphaRegex,
+  comisaria: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  repeatPassword: {
-    ...string,
-    match: alphaRegex,
+  lugar: {
+
   },
-  promedioDiasSiniestro: {
-    ...numbers,
+  conclusionDescripcion: {
+
   },
-  promedioFaltasSiniestro: {
-    ...numbers,
+  conclusionLesiones: {
+
   },
-  indiceProlijidad: {
-    ...numbers,
+  conclusionDaños: {
+
   },
-  indiceDesarrollo: {
-    ...numbers,
+  conclusionResponsabilidad: {
+
   },
-  siniestrosMensuales: {
-    ...numbers,
+  conclusionCredibilidad: {
+    type: String,
+    enum: [''],
+    required: true,
   },
-  siniestrosAnuales: {
-    ...numbers,
+  conclusionRecomendacion: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  estado: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  autorizacion: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  statsSolicitudCorreccion: {
+
+  },
+  statsGramaticaProlijidad: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  statsDesarrolloSiniestro: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  fechaFinalizacion: {
+    ...dateTime,
+  },
+  fechaContactoAsegurado: {
+    ...dateTime,
+  },
+  fechaContactoTercero: {
+    ...dateTime,
+  },
+  justificaDemoras: {
+    type: String,
+    enum: [''],
+    required: true,
+  },
+  evaluacion: {
+
   },
 });
 
-module.exports = mongoose.model('investigator', investigatorSchema);
+module.exports = mongoose.model('siniestro', siniestroSchema);
