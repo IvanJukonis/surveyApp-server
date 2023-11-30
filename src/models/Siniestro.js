@@ -58,7 +58,7 @@ const siniestroSchema = new Schema({
   instrucciones: {
     type: String,
     minLength: 3,
-    maxLength: 15,
+    maxLength: 50,
     required: true,
   },
   denuncia: {
