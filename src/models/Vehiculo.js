@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
@@ -32,7 +29,7 @@ const vehiculoSchema = new Schema({
     required: true,
   },
   fabricacion: {
-    ...dateTime,
+
   },
   tipo: {
     type: String,
@@ -40,7 +37,7 @@ const vehiculoSchema = new Schema({
     required: true,
   },
   fechaAdquisicion: {
-    ...dateTime,
+
   },
   danos: {
     type: String,

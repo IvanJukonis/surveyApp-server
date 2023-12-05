@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-  string,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
@@ -21,13 +17,13 @@ const eventoSchema = new Schema({
     required: true,
   },
   fecha: {
-    ...dateTime,
+
   },
   hora: {
-    ...dateTime,
+
   },
   descripcion: {
-    ...string,
+
   },
   comprobar: {
     type: String,
@@ -45,7 +41,7 @@ const eventoSchema = new Schema({
     required: true,
   },
   resolucion: {
-    ...string,
+
   },
 });
 

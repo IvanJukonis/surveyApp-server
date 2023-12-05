@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-  string,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
 const entrevistaRoboRuedaSchema = new Schema({
   fechaEntrevista: {
-    ...dateTime,
+
   },
   hrEntrevista: {
-    ...dateTime,
+
   },
   rol: {
 
@@ -23,19 +19,19 @@ const entrevistaRoboRuedaSchema = new Schema({
 
   },
   fechaSiniestro: {
-    ...dateTime,
+
   },
   hrAproximada: {
-    ...dateTime,
+
   },
   hrNotificacion: {
-    ...dateTime,
+
   },
   hrConfirmacion: {
-    ...dateTime,
+
   },
   hrReclamo: {
-    ...dateTime,
+
   },
   relacionVh: {
 
@@ -77,7 +73,7 @@ const entrevistaRoboRuedaSchema = new Schema({
 
   },
   relato: {
-    ...string,
+
   },
   duenoPrevio: {
 
@@ -86,10 +82,10 @@ const entrevistaRoboRuedaSchema = new Schema({
 
   },
   tuercaDeSeguridad: {
-    ...string,
+
   },
   bulones: {
-    ...string,
+
   },
   prestaRueda: {
 

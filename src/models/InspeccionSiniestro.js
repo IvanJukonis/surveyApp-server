@@ -1,8 +1,4 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-  string,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
@@ -13,10 +9,10 @@ const inspeccionSiniestroSchema = new Schema({
     required: true,
   },
   fecha: {
-    ...dateTime,
+
   },
   hora: {
-    ...dateTime,
+
   },
   permisos: {
     type: String,
@@ -24,7 +20,7 @@ const inspeccionSiniestroSchema = new Schema({
     required: true,
   },
   daños: {
-    ...string,
+
   },
   tipoDaños: {
     type: String,
@@ -32,10 +28,10 @@ const inspeccionSiniestroSchema = new Schema({
     required: true,
   },
   descripcionDaños: {
-    ...string,
+
   },
   numChasis: {
-    ...string,
+
   },
   reparacion: {
     type: String,

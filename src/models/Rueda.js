@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
@@ -34,7 +31,7 @@ const ruedaSchema = new Schema({
     required: true,
   },
   fechaColocacion: {
-    ...dateTime,
+
   },
   anterior: {
 

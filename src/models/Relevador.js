@@ -1,7 +1,4 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
@@ -24,10 +21,10 @@ const relevadorSchema = new Schema({
 
   },
   fechaNacimiento: {
-    ...dateTime,
+
   },
   fechaContratacion: {
-    ...dateTime,
+
   },
   direccion: {
 
@@ -44,13 +41,13 @@ const relevadorSchema = new Schema({
     required: true,
   },
   hsLaborales: {
-    ...dateTime,
+
   },
   salario: {
 
   },
   fechaActualizacionSalario: {
-    ...dateTime,
+
   },
   numeroSeguridadSocial: {
 

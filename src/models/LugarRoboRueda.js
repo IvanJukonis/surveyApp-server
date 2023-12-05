@@ -1,20 +1,19 @@
 const mongoose = require('mongoose');
-const { string } = require('./regex');
 
 const { Schema } = mongoose;
 
 const lugarRoboRuedaSchema = new Schema({
   prioridad: {
-    ...string,
+
   },
   direccion: {
-    ...string,
+
   },
   ciudad: {
-    ...string,
+
   },
   provincia: {
-    ...string,
+
   },
   evidenciaDanos: {
     type: String,

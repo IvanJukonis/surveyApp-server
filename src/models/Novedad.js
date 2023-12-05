@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
-const {
-  dateTime,
-} = require('./regex');
 
 const { Schema } = mongoose;
 
 const novedadSchema = new Schema({
   fecha: {
-    ...dateTime,
+
   },
   hora: {
-    ...dateTime,
+
   },
   titulo: {
 
