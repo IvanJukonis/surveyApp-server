@@ -1,10 +1,27 @@
 const Siniestros = require('../models/Siniestro');
 
+const handleErrors = (res, error) => {
+  console.error(error);
+  return res.status(500).json({
+    message: 'Internal Server Error',
+    data: null,
+    error: true,
+  });
+};
+
+const handleNotFound = (res, id) => res.status(404).json({
+  message: `Siniestro ${id} not found`,
+  data: null,
+  error: true,
+});
+
+const isEmpty = (array) => array.length === 0;
+
 const getSiniestro = async (req, res) => {
   try {
     const siniestros = await Siniestros.find();
 
-    if (siniestros.length > 0) {
+    if (!isEmpty(siniestros)) {
       return res.status(200).json({
         message: 'Siniestros list',
         data: siniestros,
@@ -17,41 +34,29 @@ const getSiniestro = async (req, res) => {
       error: true,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: error,
-      data: null,
-      error: true,
-    });
+    return handleErrors(res, error);
   }
 };
 
 const getSiniestroById = async (req, res) => {
   const { id } = req.params;
   try {
-    const siniestros = await Siniestros.findById(id);
-    if (siniestros) {
-      res.status(200).json({
+    const siniestro = await Siniestros.findById(id);
+
+    if (siniestro) {
+      return res.status(200).json({
         message: 'Siniestro found',
-        data: siniestros,
+        data: siniestro,
         error: false,
       });
-    } else {
-      res.status(404).json({
-        message: 'Siniestro not found',
-        data: null,
-        error: true,
-      });
     }
+    return handleNotFound(res, id);
   } catch (error) {
-    res.status(400).json({
-      message: error,
-      data: null,
-      error: true,
-    });
+    return handleErrors(res, error);
   }
 };
 
-const createSiniestro = async (req, res) => {
+const postSiniestro = async (req, res) => {
   const {
     numSiniestro,
     numPoliza,
@@ -69,7 +74,7 @@ const createSiniestro = async (req, res) => {
   } = req.body;
 
   try {
-    const siniestros = await Siniestros.create({
+    const siniestro = await Siniestros.create({
       numSiniestro,
       numPoliza,
       numInforme,
@@ -85,23 +90,18 @@ const createSiniestro = async (req, res) => {
       denuncia,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Siniestro created',
-      data: siniestros,
+      data: siniestro,
       error: false,
     });
   } catch (error) {
-    res.status(500).json({
-      message: error,
-      data: null,
-      error: true,
-    });
+    return handleErrors(res, error);
   }
 };
 
 const updateSiniestro = async (req, res) => {
   const { id } = req.params;
-
   const {
     numSiniestro,
     numPoliza,
@@ -119,7 +119,7 @@ const updateSiniestro = async (req, res) => {
   } = req.body;
 
   try {
-    const siniestros = await Siniestros.findByIdAndUpdate(
+    const siniestro = await Siniestros.findByIdAndUpdate(
       id,
       {
         numSiniestro,
@@ -139,58 +139,40 @@ const updateSiniestro = async (req, res) => {
       { new: true },
     );
 
-    if (siniestros) {
-      res.status(201).json({
+    if (siniestro) {
+      return res.status(201).json({
         message: 'Siniestro updated',
-        data: siniestros,
+        data: siniestro,
         error: false,
       });
-    } else {
-      res.status(404).json({
-        message: 'Siniestro not found',
-        data: null,
-        error: true,
-      });
     }
+    return handleNotFound(res, id);
   } catch (error) {
-    res.status(500).json({
-      message: error,
-      data: null,
-      error: true,
-    });
+    return handleErrors(res, error);
   }
 };
 
 const deleteSiniestro = async (req, res) => {
   const { id } = req.params;
   try {
-    const siniestros = await Siniestros.findByIdAndDelete(id);
-    if (siniestros) {
-      res.status(200).json({
+    const siniestro = await Siniestros.findByIdAndDelete(id);
+    if (siniestro) {
+      return res.status(200).json({
         message: `Siniestro ${id} deleted`,
-        data: siniestros,
-        error: false,
-      });
-    } else {
-      res.status(404).json({
-        message: 'Siniestro not found',
-        data: null,
+        data: siniestro,
         error: false,
       });
     }
+    return handleNotFound(res, id);
   } catch (error) {
-    res.status(500).json({
-      message: error,
-      data: null,
-      error: true,
-    });
+    return handleErrors(res, error);
   }
 };
 
 module.exports = {
   getSiniestro,
   getSiniestroById,
-  createSiniestro,
+  postSiniestro,
   updateSiniestro,
   deleteSiniestro,
 };

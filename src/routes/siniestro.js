@@ -7,7 +7,7 @@ const siniestroController = require('../controllers/siniestro');
 router
   .get('/', siniestroController.getSiniestro)
   .get('/:id', siniestroController.getSiniestroById)
-  .post('/', siniestroController.createSiniestro)
+  .post('/', siniestroController.postSiniestro)
   .put('/:id', siniestroController.updateSiniestro)
   .delete('/:id', siniestroController.deleteSiniestro);
 
