@@ -18,7 +18,7 @@ const getLugarRoboRueda = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -44,14 +44,14 @@ const getLugarRoboRuedaById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createLugarRoboRueda = (req, res) => {
+const postLugarRoboRueda = async (req, res) => {
   const {
     calleVA,
     calleVT,
@@ -66,60 +66,8 @@ const createLugarRoboRueda = (req, res) => {
     ciudad,
     localidad,
   } = req.body;
-
-  LugarRoboRuedas.create({
-    calleVA,
-    calleVT,
-    direccionVA,
-    direccionVT,
-    direccionCalleVA,
-    direccionCalleVT,
-    estadoCalleVA,
-    estadoCalleVT,
-    calleAdicional,
-    direccionCalleAdicional,
-    ciudad,
-    localidad,
-  })
-    .then((result) => res.status(201).json({
-      message: 'LugarRoboRueda created successfuly',
-      data: result,
-      error: false,
-    }))
-    .catch((error) => {
-      if (error.message.includes('E11000 duplicate key error collection')) {
-        return res.status(400).json({
-          message: 'Email already exists',
-          error,
-        });
-      }
-      return res.status(500).json({
-        message: 'An error ocurred',
-        error,
-      });
-    });
-};
-
-const updateLugarRoboRueda = (req, res) => {
-  const { id } = req.params;
-  const {
-    calleVA,
-    calleVT,
-    direccionVA,
-    direccionVT,
-    direccionCalleVA,
-    direccionCalleVT,
-    estadoCalleVA,
-    estadoCalleVT,
-    calleAdicional,
-    direccionCalleAdicional,
-    ciudad,
-    localidad,
-  } = req.body;
-
-  LugarRoboRuedas.findByIdAndUpdate(
-    id,
-    {
+  try {
+    const lugarRoboRueda = await LugarRoboRuedas.create({
       calleVA,
       calleVT,
       direccionVA,
@@ -132,44 +80,112 @@ const updateLugarRoboRueda = (req, res) => {
       direccionCalleAdicional,
       ciudad,
       localidad,
-    },
-    { new: true },
-  )
-    .then((result) => {
-      if (!result) {
-        return res.status(404).json({
-          message: `LugarRoboRueda with id: ${id} was not found`,
-          error: true,
-        });
-      }
-      return res.status(201).json(result);
-    })
-    .catch((error) => res.status(500).json(error));
+    });
+
+    res.status(201).json({
+      message: 'LugarRoboRueda created',
+      data: lugarRoboRueda,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error,
+      data: null,
+      error: true,
+    });
+  }
+};
+
+const updateLugarRoboRueda = async (req, res) => {
+  const { id } = req.params;
+
+  const {
+    calleVA,
+    calleVT,
+    direccionVA,
+    direccionVT,
+    direccionCalleVA,
+    direccionCalleVT,
+    estadoCalleVA,
+    estadoCalleVT,
+    calleAdicional,
+    direccionCalleAdicional,
+    ciudad,
+    localidad,
+  } = req.body;
+
+  try {
+    const lugarRoboRueda = await LugarRoboRuedas.findByIdAndUpdate(
+      id,
+      {
+        calleVA,
+        calleVT,
+        direccionVA,
+        direccionVT,
+        direccionCalleVA,
+        direccionCalleVT,
+        estadoCalleVA,
+        estadoCalleVT,
+        calleAdicional,
+        direccionCalleAdicional,
+        ciudad,
+        localidad,
+      },
+      { new: true },
+    );
+
+    if (lugarRoboRueda) {
+      res.status(201).json({
+        message: 'LugarRoboRueda updated',
+        data: lugarRoboRueda,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'LugarRoboRueda not found',
+        data: null,
+        error: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
+  }
 };
 
 const deleteLugarRoboRueda = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-
-    const lugarRoboRuedaExist = await LugarRoboRuedas.findById(id);
-
-    if (!lugarRoboRuedaExist) {
-      return res.status(404).send('ID was not found');
+    const lugarRoboRuedas = await LugarRoboRuedas.findByIdAndDelete(id);
+    if (lugarRoboRuedas) {
+      res.status(200).json({
+        message: `LugarRoboRueda ${id} deleted`,
+        data: lugarRoboRuedas,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'LugarRoboRueda not found',
+        data: null,
+        error: false,
+      });
     }
-
-    await LugarRoboRuedas.findByIdAndDelete(id);
-
-    res.send('LugarRoboRueda has been deleted');
   } catch (error) {
-    res.status(500).send('LugarRoboRueda could not be deleted');
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
   }
-  return null;
 };
 
 module.exports = {
   updateLugarRoboRueda,
   deleteLugarRoboRueda,
-  createLugarRoboRueda,
+  postLugarRoboRueda,
   getLugarRoboRueda,
   getLugarRoboRuedaById,
 };

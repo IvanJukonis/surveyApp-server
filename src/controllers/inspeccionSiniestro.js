@@ -18,7 +18,7 @@ const getInspeccionSiniestro = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -43,15 +43,15 @@ const getInspeccionSiniestroById = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(400).json({
-      message: error,
+    res.status(500).json({
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createInspeccionSiniestro = async (req, res) => {
+const postInspeccionSiniestro = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -84,9 +84,8 @@ const createInspeccionSiniestro = async (req, res) => {
     siniestrosMensuales,
     siniestrosAnuales,
   } = req.body;
-
   try {
-    const inspeccionSiniestros = await InspeccionSiniestros.create({
+    const inspeccionSiniestro = await InspeccionSiniestros.create({
       firstName,
       lastName,
       dni,
@@ -121,12 +120,12 @@ const createInspeccionSiniestro = async (req, res) => {
 
     res.status(201).json({
       message: 'InspeccionSiniestro created',
-      data: inspeccionSiniestros,
+      data: inspeccionSiniestro,
       error: false,
     });
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -222,7 +221,7 @@ const updateInspeccionSiniestro = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -248,7 +247,7 @@ const deleteInspeccionSiniestro = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -258,7 +257,7 @@ const deleteInspeccionSiniestro = async (req, res) => {
 module.exports = {
   getInspeccionSiniestro,
   getInspeccionSiniestroById,
-  createInspeccionSiniestro,
+  postInspeccionSiniestro,
   updateInspeccionSiniestro,
   deleteInspeccionSiniestro,
 };

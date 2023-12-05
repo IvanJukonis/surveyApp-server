@@ -18,7 +18,7 @@ const getInspeccionRoboRueda = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -43,15 +43,15 @@ const getInspeccionRoboRuedaById = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(400).json({
-      message: error,
+    res.status(500).json({
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createInspeccionRoboRueda = async (req, res) => {
+const postInspeccionRoboRueda = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -126,7 +126,7 @@ const createInspeccionRoboRueda = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -222,7 +222,7 @@ const updateInspeccionRoboRueda = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -258,7 +258,7 @@ const deleteInspeccionRoboRueda = async (req, res) => {
 module.exports = {
   getInspeccionRoboRueda,
   getInspeccionRoboRuedaById,
-  createInspeccionRoboRueda,
+  postInspeccionRoboRueda,
   updateInspeccionRoboRueda,
   deleteInspeccionRoboRueda,
 };

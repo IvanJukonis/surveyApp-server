@@ -5,7 +5,10 @@ const router = express.Router();
 const lugarSiniestroController = require('../controllers/lugarSiniestro');
 
 router
-  .post('/', lugarSiniestroController.createLugarSiniestro)
-  .get('/', lugarSiniestroController.getLugarSiniestro);
+  .get('/', lugarSiniestroController.getLugarSiniestro)
+  .get('/:id', lugarSiniestroController.getLugarSiniestroById)
+  .post('/', lugarSiniestroController.postLugarSiniestro)
+  .put('/:id', lugarSiniestroController.updateLugarSiniestro)
+  .delete('/:id', lugarSiniestroController.deleteLugarSiniestro);
 
 module.exports = router;

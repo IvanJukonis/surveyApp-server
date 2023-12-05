@@ -5,7 +5,10 @@ const router = express.Router();
 const vehiculoController = require('../controllers/vehiculo');
 
 router
-  .post('/', vehiculoController.createVehiculo)
-  .get('/', vehiculoController.getVehiculo);
+  .get('/', vehiculoController.getVehiculo)
+  .get('/:id', vehiculoController.getVehiculoById)
+  .post('/', vehiculoController.postVehiculo)
+  .put('/:id', vehiculoController.updateVehiculo)
+  .delete('/:id', vehiculoController.deleteVehiculo);
 
 module.exports = router;

@@ -5,7 +5,10 @@ const router = express.Router();
 const eventoController = require('../controllers/evento');
 
 router
-  .post('/', eventoController.createEvento)
-  .get('/', eventoController.getEvento);
+  .get('/', eventoController.getEvento)
+  .get('/:id', eventoController.getEventoById)
+  .post('/', eventoController.postEvento)
+  .put('/:id', eventoController.updateEvento)
+  .delete('/:id', eventoController.deleteEvento);
 
 module.exports = router;

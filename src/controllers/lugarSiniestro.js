@@ -18,7 +18,7 @@ const getLugarSiniestro = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -44,14 +44,14 @@ const getLugarSiniestroById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createLugarSiniestro = (req, res) => {
+const postLugarSiniestro = async (req, res) => {
   const {
     calleVA,
     calleVT,
@@ -67,59 +67,8 @@ const createLugarSiniestro = (req, res) => {
     localidad,
   } = req.body;
 
-  LugarSiniestros.create({
-    calleVA,
-    calleVT,
-    direccionVA,
-    direccionVT,
-    direccionCalleVA,
-    direccionCalleVT,
-    estadoCalleVA,
-    estadoCalleVT,
-    calleAdicional,
-    direccionCalleAdicional,
-    ciudad,
-    localidad,
-  })
-    .then((result) => res.status(201).json({
-      message: 'LugarSiniestro created successfuly',
-      data: result,
-      error: false,
-    }))
-    .catch((error) => {
-      if (error.message.includes('E11000 duplicate key error collection')) {
-        return res.status(400).json({
-          message: 'Email already exists',
-          error,
-        });
-      }
-      return res.status(500).json({
-        message: 'An error ocurred',
-        error,
-      });
-    });
-};
-
-const updateLugarSiniestro = (req, res) => {
-  const { id } = req.params;
-  const {
-    calleVA,
-    calleVT,
-    direccionVA,
-    direccionVT,
-    direccionCalleVA,
-    direccionCalleVT,
-    estadoCalleVA,
-    estadoCalleVT,
-    calleAdicional,
-    direccionCalleAdicional,
-    ciudad,
-    localidad,
-  } = req.body;
-
-  LugarSiniestros.findByIdAndUpdate(
-    id,
-    {
+  try {
+    const lugarSiniestro = await LugarSiniestros.create({
       calleVA,
       calleVT,
       direccionVA,
@@ -132,44 +81,112 @@ const updateLugarSiniestro = (req, res) => {
       direccionCalleAdicional,
       ciudad,
       localidad,
-    },
-    { new: true },
-  )
-    .then((result) => {
-      if (!result) {
-        return res.status(404).json({
-          message: `LugarSiniestro with id: ${id} was not found`,
-          error: true,
-        });
-      }
-      return res.status(201).json(result);
-    })
-    .catch((error) => res.status(500).json(error));
+    });
+
+    res.status(201).json({
+      message: 'LugarSiniestro created',
+      data: lugarSiniestro,
+      error: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
+  }
+};
+
+const updateLugarSiniestro = async (req, res) => {
+  const { id } = req.params;
+
+  const {
+    calleVA,
+    calleVT,
+    direccionVA,
+    direccionVT,
+    direccionCalleVA,
+    direccionCalleVT,
+    estadoCalleVA,
+    estadoCalleVT,
+    calleAdicional,
+    direccionCalleAdicional,
+    ciudad,
+    localidad,
+  } = req.body;
+
+  try {
+    const lugarSiniestros = await LugarSiniestros.findByIdAndUpdate(
+      id,
+      {
+        calleVA,
+        calleVT,
+        direccionVA,
+        direccionVT,
+        direccionCalleVA,
+        direccionCalleVT,
+        estadoCalleVA,
+        estadoCalleVT,
+        calleAdicional,
+        direccionCalleAdicional,
+        ciudad,
+        localidad,
+      },
+      { new: true },
+    );
+
+    if (lugarSiniestros) {
+      res.status(201).json({
+        message: 'LugarSiniestro updated',
+        data: lugarSiniestros,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'LugarSiniestro not found',
+        data: null,
+        error: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
+  }
 };
 
 const deleteLugarSiniestro = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-
-    const lugarSiniestroExist = await LugarSiniestros.findById(id);
-
-    if (!lugarSiniestroExist) {
-      return res.status(404).send('ID was not found');
+    const lugarSiniestros = await LugarSiniestros.findByIdAndDelete(id);
+    if (lugarSiniestros) {
+      res.status(200).json({
+        message: `LugarSiniestro ${id} deleted`,
+        data: lugarSiniestros,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'LugarSiniestro not found',
+        data: null,
+        error: false,
+      });
     }
-
-    await LugarSiniestros.findByIdAndDelete(id);
-
-    res.send('LugarSiniestro has been deleted');
   } catch (error) {
-    res.status(500).send('LugarSiniestro could not be deleted');
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
   }
-  return null;
 };
 
 module.exports = {
   updateLugarSiniestro,
   deleteLugarSiniestro,
-  createLugarSiniestro,
+  postLugarSiniestro,
   getLugarSiniestro,
   getLugarSiniestroById,
 };

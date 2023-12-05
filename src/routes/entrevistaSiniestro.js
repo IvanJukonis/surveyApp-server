@@ -5,7 +5,10 @@ const router = express.Router();
 const entrevistaSiniestroController = require('../controllers/entrevistaSiniestro');
 
 router
-  .post('/', entrevistaSiniestroController.createEntrevistaSiniestro)
-  .get('/', entrevistaSiniestroController.getEntrevistaSiniestro);
+  .get('/', entrevistaSiniestroController.getEntrevistaSiniestro)
+  .get('/:id', entrevistaSiniestroController.getEntrevistaSiniestroById)
+  .post('/', entrevistaSiniestroController.postEntrevistaSiniestro)
+  .put('/:id', entrevistaSiniestroController.updateEntrevistaSiniestro)
+  .delete('/:id', entrevistaSiniestroController.deleteEntrevistaSiniestro);
 
 module.exports = router;

@@ -5,7 +5,10 @@ const router = express.Router();
 const inspeccionSiniestroController = require('../controllers/inspeccionSiniestro');
 
 router
-  .post('/', inspeccionSiniestroController.createInspeccionSiniestro)
-  .get('/', inspeccionSiniestroController.getInspeccionSiniestro);
+  .get('/', inspeccionSiniestroController.getInspeccionSiniestro)
+  .get('/:id', inspeccionSiniestroController.getInspeccionSiniestroById)
+  .post('/', inspeccionSiniestroController.postInspeccionSiniestro)
+  .put('/:id', inspeccionSiniestroController.updateInspeccionSiniestro)
+  .delete('/:id', inspeccionSiniestroController.deleteInspeccionSiniestro);
 
 module.exports = router;

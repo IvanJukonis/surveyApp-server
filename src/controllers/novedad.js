@@ -18,7 +18,7 @@ const getNovedad = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -43,15 +43,15 @@ const getNovedadById = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(400).json({
-      message: error,
+    res.status(500).json({
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createNovedad = async (req, res) => {
+const postNovedad = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -126,7 +126,7 @@ const createNovedad = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -222,7 +222,7 @@ const updateNovedad = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -248,7 +248,7 @@ const deleteNovedad = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -258,7 +258,7 @@ const deleteNovedad = async (req, res) => {
 module.exports = {
   getNovedad,
   getNovedadById,
-  createNovedad,
+  postNovedad,
   updateNovedad,
   deleteNovedad,
 };

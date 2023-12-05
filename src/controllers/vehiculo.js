@@ -18,7 +18,7 @@ const getVehiculo = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -32,7 +32,7 @@ const getVehiculoById = async (req, res) => {
 
     if (vehiculo) {
       return res.status(200).json({
-        message: 'Vehiculo Found',
+        message: 'Vehiculo found',
         data: vehiculo,
         error: false,
       });
@@ -44,14 +44,14 @@ const getVehiculoById = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Request failed due to a server error',
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createVehiculo = async (req, res) => {
+const postVehiculo = async (req, res) => {
   try {
     const {
       involved,
@@ -132,7 +132,7 @@ const updateVehiculo = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Request failed due to a server error',
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -158,7 +158,7 @@ const deleteVehiculo = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Request failed due to a server error',
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -168,7 +168,7 @@ const deleteVehiculo = async (req, res) => {
 module.exports = {
   getVehiculo,
   getVehiculoById,
-  createVehiculo,
+  postVehiculo,
   updateVehiculo,
   deleteVehiculo,
 };

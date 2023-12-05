@@ -18,7 +18,7 @@ const getEvento = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -31,7 +31,7 @@ const getEventoById = async (req, res) => {
     const eventos = await Eventos.findById(id);
     if (eventos) {
       res.status(200).json({
-        message: 'Eento found',
+        message: 'Evento found',
         data: eventos,
         error: false,
       });
@@ -43,15 +43,15 @@ const getEventoById = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(400).json({
-      message: error,
+    res.status(500).json({
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const createEvento = async (req, res) => {
+const postEvento = async (req, res) => {
   const {
     firstName,
     lastName,
@@ -126,7 +126,7 @@ const createEvento = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -222,7 +222,7 @@ const updateEvento = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -248,7 +248,7 @@ const deleteEvento = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
@@ -258,7 +258,7 @@ const deleteEvento = async (req, res) => {
 module.exports = {
   getEvento,
   getEventoById,
-  createEvento,
+  postEvento,
   updateEvento,
   deleteEvento,
 };

@@ -6,53 +6,51 @@ const getInvolucrado = async (req, res) => {
 
     if (involucrado.length > 0) {
       return res.status(200).json({
-        message: 'Involucrado list',
+        message: 'Involucrados list',
         data: involucrado,
         error: false,
       });
     }
     return res.status(404).json({
-      message: 'No Involucrado found',
+      message: 'No Involucrados found',
       data: null,
       error: true,
     });
   } catch (error) {
     return res.status(500).json({
-      message: error,
+      message: 'Internal Server Error',
       data: null,
       error: true,
     });
   }
 };
 
-const getInvolucradoById = (req, res) => {
+const getInvolucradoById = async (req, res) => {
   const { id } = req.params;
-
-  Involucrado.findById(id)
-    .then((involucrado) => {
-      if (involucrado) {
-        res.status(200).json({
-          message: 'Involucrado Found',
-          data: involucrado,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Involucrado not found',
-          error: true,
-        });
-      }
-    })
-    .catch((error) => {
-      res.status(400).json({
-        message: error,
-        data: null,
+  try {
+    const involucrado = await Involucrado.findById(id);
+    if (involucrado) {
+      res.status(200).json({
+        message: 'Involucrado Found',
+        data: involucrado,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Involucrado not found',
         error: true,
       });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
     });
+  }
 };
 
-const createInvolucrado = async (req, res) => {
+const postInvolucrado = async (req, res) => {
   const {
     nombre,
     apellido,
@@ -107,7 +105,7 @@ const createInvolucrado = async (req, res) => {
   }
 };
 
-const updateInvolucrado = (req, res) => {
+const updateInvolucrado = async (req, res) => {
   const { id } = req.params;
 
   const {
@@ -130,75 +128,81 @@ const updateInvolucrado = (req, res) => {
     pais,
   } = req.body;
 
-  Involucrado.findByIdAndUpdate(
-    id,
-    {
-      nombre,
-      apellido,
-      DNI,
-      telefono,
-      email,
-      ciudad,
-      tipo,
-      lesiones,
-      dañosInvolucrado,
-      fechaDeNacimiento,
-      direccion,
-      aportaDNI,
-      aportaLC,
-      aportaDoc,
-      aportaLesiones,
-      aportaGastos,
-      pais,
-    },
-    { new: true },
-  )
-    .then((involucrado) => {
-      if (involucrado) {
-        res.status(201).json({
-          message: 'Involucrado updated',
-          data: involucrado,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Involucrado not found',
-          data: null,
-          error: true,
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: error,
+  try {
+    const involucrado = await Involucrado.findByIdAndUpdate(
+      id,
+      {
+        nombre,
+        apellido,
+        DNI,
+        telefono,
+        email,
+        ciudad,
+        tipo,
+        lesiones,
+        dañosInvolucrado,
+        fechaDeNacimiento,
+        direccion,
+        aportaDNI,
+        aportaLC,
+        aportaDoc,
+        aportaLesiones,
+        aportaGastos,
+        pais,
+      },
+      { new: true },
+    );
+
+    if (involucrado) {
+      res.status(201).json({
+        message: 'Involucrado updated',
+        data: involucrado,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Involucrado not found',
+        data: null,
+        error: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
       data: null,
       error: true,
-    }));
+    });
+  }
 };
 
-const deleteInvolucrado = (req, res) => {
+const deleteInvolucrado = async (req, res) => {
   const { id } = req.params;
-  Involucrado.findByIdAndDelete(id)
-    .then((result) => {
-      if (result) {
-        res.status(200).json({
-          message: `Involucrado ${id} deleted`,
-          data: result,
-          error: false,
-        });
-      } else {
-        res.status(404).json({
-          message: 'Involucrado not found',
-        });
-      }
-    })
-    .catch((error) => res.status(500).json({
-      message: 'Error in the request',
-      error,
-    }));
+  try {
+    const involucrados = await Involucrado.findByIdAndDelete(id);
+    if (involucrados) {
+      res.status(200).json({
+        message: `Involucrado ${id} deleted`,
+        data: involucrados,
+        error: false,
+      });
+    } else {
+      res.status(404).json({
+        message: 'Involucrado not found',
+        data: null,
+        error: false,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: 'Internal Server Error',
+      data: null,
+      error: true,
+    });
+  }
 };
 
 module.exports = {
-  createInvolucrado,
+  postInvolucrado,
   getInvolucrado,
   updateInvolucrado,
   deleteInvolucrado,

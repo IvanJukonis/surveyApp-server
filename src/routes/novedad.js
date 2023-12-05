@@ -5,7 +5,10 @@ const router = express.Router();
 const novedadController = require('../controllers/novedad');
 
 router
-  .post('/', novedadController.createNovedad)
-  .get('/', novedadController.getNovedad);
+  .get('/', novedadController.getNovedad)
+  .get('/:id', novedadController.getNovedadById)
+  .post('/', novedadController.postNovedad)
+  .put('/:id', novedadController.updateNovedad)
+  .delete('/:id', novedadController.deleteNovedad);
 
 module.exports = router;

@@ -5,7 +5,10 @@ const router = express.Router();
 const ruedaController = require('../controllers/rueda');
 
 router
-  .post('/', ruedaController.createRueda)
-  .get('/', ruedaController.getRueda);
+  .get('/', ruedaController.getRueda)
+  .get('/:id', ruedaController.getRuedaById)
+  .post('/', ruedaController.postRueda)
+  .put('/:id', ruedaController.updateRueda)
+  .delete('/:id', ruedaController.deleteRueda);
 
 module.exports = router;
