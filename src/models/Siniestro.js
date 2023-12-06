@@ -3,6 +3,16 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const siniestroSchema = new Schema({
+  relevador: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Relevador',
+    required: true,
+  },
+  controlador: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Controlador',
+    required: true,
+  },
   numSiniestro: {
     type: Number,
     minLength: 3,
@@ -66,6 +76,70 @@ const siniestroSchema = new Schema({
     minLength: 3,
     maxLength: 500,
     required: true,
+  },
+  requerido: {
+    type: String,
+    enum: ['Relevamiento completo', 'Relevamiento sin cierre', 'Investigacion de fraude', 'Relevamiento y comprobacion', 'Relevamiento y comprobacion, sin cierre'],
+    required: true,
+  },
+  comisaria: {
+    type: String,
+    minLength: 3,
+    maxLength: 50,
+  },
+  lugar: {
+    type: String,
+    minLength: 3,
+    maxLength: 50,
+  },
+  conclusionDescripcion: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+    required: true,
+  },
+  conclusionLesiones: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  conclusionDaños: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  conclusionResponsabilidad: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  conclusionCredibilidad: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  conclusionRecomendacion: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  estado: {
+    type: String,
+    enum: ['Sin asignar', 'Asignado', 'Activo', 'Finalizado', 'Controlado', 'Completado'],
+  },
+  autorizacion: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  fechaFinalizacion: {
+    type: Date,
+  },
+  fechaContactoAsegurado: {
+    type: Date,
+  },
+  fechaContactoTercero: {
+    type: Date,
   },
 });
 
