@@ -1,12 +1,12 @@
-const Relevadors = require('../models/Relevador');
+const Relevadores = require('../models/Relevador');
 
 const getRelevador = async (req, res) => {
   try {
-    const relevadores = await Relevadors.find();
+    const relevadores = await Relevadores.find();
 
     if (relevadores.length > 0) {
       return res.status(200).json({
-        message: 'Relevadors list',
+        message: 'Relevadores list',
         data: relevadores,
         error: false,
       });
@@ -28,7 +28,7 @@ const getRelevador = async (req, res) => {
 const getRelevadorById = async (req, res) => {
   const { id } = req.params;
   try {
-    const relevadores = await Relevadors.findById(id);
+    const relevadores = await Relevadores.findById(id);
     if (relevadores) {
       res.status(200).json({
         message: 'Relevador found',
@@ -44,7 +44,7 @@ const getRelevadorById = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });
@@ -80,7 +80,7 @@ const postRelevador = async (req, res) => {
   } = req.body;
 
   try {
-    const relevadores = await Relevadors.create({
+    const relevadores = await Relevadores.create({
       tipo,
       nombre,
       apellido,
@@ -114,7 +114,7 @@ const postRelevador = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });
@@ -152,7 +152,7 @@ const updateRelevador = async (req, res) => {
   } = req.body;
 
   try {
-    const relevadores = await Relevadors.findByIdAndUpdate(
+    const relevadores = await Relevadores.findByIdAndUpdate(
       id,
       {
         tipo,
@@ -208,7 +208,7 @@ const updateRelevador = async (req, res) => {
 const deleteRelevador = async (req, res) => {
   const { id } = req.params;
   try {
-    const relevadores = await Relevadors.findByIdAndDelete(id);
+    const relevadores = await Relevadores.findByIdAndDelete(id);
     if (relevadores) {
       res.status(200).json({
         message: `Relevador ${id} deleted`,

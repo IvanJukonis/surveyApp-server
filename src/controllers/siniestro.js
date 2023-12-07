@@ -58,6 +58,8 @@ const getSiniestroById = async (req, res) => {
 
 const postSiniestro = async (req, res) => {
   const {
+    relevador,
+    controlador,
     numSiniestro,
     numPoliza,
     numInforme,
@@ -71,10 +73,26 @@ const postSiniestro = async (req, res) => {
     presencial,
     instrucciones,
     denuncia,
+    requerido,
+    comisaria,
+    lugar,
+    conclusionDescripcion,
+    conclusionLesiones,
+    conclusionDaños,
+    conclusionResponsabilidad,
+    conclusionCredibilidad,
+    conclusionRecomendacion,
+    estado,
+    autorizacion,
+    fechaFinalizacion,
+    fechaContactoAsegurado,
+    fechaContactoTercero,
   } = req.body;
 
   try {
     const siniestro = await Siniestros.create({
+      relevador,
+      controlador,
       numSiniestro,
       numPoliza,
       numInforme,
@@ -88,6 +106,20 @@ const postSiniestro = async (req, res) => {
       presencial,
       instrucciones,
       denuncia,
+      requerido,
+      comisaria,
+      lugar,
+      conclusionDescripcion,
+      conclusionLesiones,
+      conclusionDaños,
+      conclusionResponsabilidad,
+      conclusionCredibilidad,
+      conclusionRecomendacion,
+      estado,
+      autorizacion,
+      fechaFinalizacion,
+      fechaContactoAsegurado,
+      fechaContactoTercero,
     });
 
     return res.status(201).json({
@@ -103,6 +135,8 @@ const postSiniestro = async (req, res) => {
 const updateSiniestro = async (req, res) => {
   const { id } = req.params;
   const {
+    relevador,
+    controlador,
     numSiniestro,
     numPoliza,
     numInforme,
@@ -116,12 +150,28 @@ const updateSiniestro = async (req, res) => {
     presencial,
     instrucciones,
     denuncia,
+    requerido,
+    comisaria,
+    lugar,
+    conclusionDescripcion,
+    conclusionLesiones,
+    conclusionDaños,
+    conclusionResponsabilidad,
+    conclusionCredibilidad,
+    conclusionRecomendacion,
+    estado,
+    autorizacion,
+    fechaFinalizacion,
+    fechaContactoAsegurado,
+    fechaContactoTercero,
   } = req.body;
 
   try {
     const siniestro = await Siniestros.findByIdAndUpdate(
       id,
       {
+        relevador,
+        controlador,
         numSiniestro,
         numPoliza,
         numInforme,
@@ -135,6 +185,20 @@ const updateSiniestro = async (req, res) => {
         presencial,
         instrucciones,
         denuncia,
+        requerido,
+        comisaria,
+        lugar,
+        conclusionDescripcion,
+        conclusionLesiones,
+        conclusionDaños,
+        conclusionResponsabilidad,
+        conclusionCredibilidad,
+        conclusionRecomendacion,
+        estado,
+        autorizacion,
+        fechaFinalizacion,
+        fechaContactoAsegurado,
+        fechaContactoTercero,
       },
       { new: true },
     );
