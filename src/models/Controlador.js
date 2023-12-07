@@ -53,7 +53,7 @@ const controladorSchema = new Schema({
     maxLength: 15,
   },
   telefono: {
-    type: String,
+    type: Number,
     required: true,
     minLength: 9,
     maxLength: 12,

@@ -64,7 +64,9 @@ const relevadorSchema = new Schema({
     required: true,
   },
   hsLaborales: {
-    type: Date,
+    type: Number,
+    minLength: 3,
+    maxLength: 8,
     required: true,
   },
   salario: {
