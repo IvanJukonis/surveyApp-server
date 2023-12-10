@@ -39,8 +39,8 @@ const novedadSchema = new Schema({
     default: true,
   },
   respuesta: {
-    type: String,
-    required: true,
+    type: Boolean,
+    default: true,
   },
 });
 
