@@ -5,56 +5,64 @@ const { Schema } = mongoose;
 const vehiculoSchema = new Schema({
   rol: {
     type: String,
-    enum: [''],
+    enum: ['VA', 'VT', 'VT2', 'VT3', 'VAd'],
     required: true,
   },
   prioridad: {
-
+    type: Boolean,
+    default: false,
   },
   dominio: {
-
+    type: String,
+    required: true,
   },
   marca: {
-
+    type: String,
+    required: true,
   },
   modelo: {
-
+    type: String,
+    required: true,
   },
   color: {
-
+    type: String,
+    required: true,
   },
   uso: {
     type: String,
-    enum: [''],
+    enum: ['Particular', 'Profesional', 'Servicio', 'Otro'],
     required: true,
   },
   fabricacion: {
-
+    type: String,
+    required: true,
   },
   tipo: {
     type: String,
-    enum: [''],
+    enum: ['Automovil', 'Camioneta', 'Motocicleta', 'Bicicleta', 'Cuatrimoto', 'Camion', 'Otro'],
     required: true,
   },
   fechaAdquisicion: {
-
+    type: Date,
+    required: true,
   },
   danos: {
     type: String,
-    enum: [''],
+    enum: ['Graves', 'Leves', 'Medios', 'Sin Daños'],
     required: true,
   },
   descripcionDanos: {
-
+    type: String,
+    required: true,
   },
   alarma: {
     type: String,
-    enum: [''],
+    enum: ['Con alarma (Activada)', 'Con alarma (Desactivada)', 'Sin alarma'],
     required: true,
   },
   cierreCentralizado: {
     type: String,
-    enum: [''],
+    enum: ['Con cierre (Activado)', 'Con cierre (Desactivado)', 'Sin cierre'],
     required: true,
   },
 });

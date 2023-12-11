@@ -54,25 +54,37 @@ const getVehiculoById = async (req, res) => {
 const postVehiculo = async (req, res) => {
   try {
     const {
-      involved,
+      rol,
+      prioridad,
       dominio,
       marca,
       modelo,
       color,
       uso,
-      año,
-      descripcionDaños,
+      fabricacion,
+      tipo,
+      fechaAdquisicion,
+      danos,
+      descripcionDanos,
+      alarma,
+      cierreCentralizado,
     } = req.body;
 
     const newVehiculo = await Vehiculos.create({
-      involved,
+      rol,
+      prioridad,
       dominio,
       marca,
       modelo,
       color,
       uso,
-      año,
-      descripcionDaños,
+      fabricacion,
+      tipo,
+      fechaAdquisicion,
+      danos,
+      descripcionDanos,
+      alarma,
+      cierreCentralizado,
     });
 
     return res.status(201).json({
