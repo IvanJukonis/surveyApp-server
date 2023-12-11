@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const lugarRoboRuedaSchema = new Schema({
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
   prioridad: {
     type: Boolean,
     default: false,
