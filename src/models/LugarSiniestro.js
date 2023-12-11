@@ -4,102 +4,110 @@ const { Schema } = mongoose;
 
 const lugarSiniestroSchema = new Schema({
   prioridad: {
-
+    type: Boolean,
+    default: false,
   },
   calleVa: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   direccionVa: {
     type: String,
-    enum: [''],
+    enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
   },
   direcionCalleVa: {
     type: String,
-    enum: [''],
+    enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
   },
   estadoCalleVa: {
     type: String,
-    enum: [''],
+    enum: ['Buen', 'Regular', 'Mal'],
     required: true,
   },
   tipoCalleVa: {
     type: String,
-    enum: [''],
+    enum: ['Asfalto', 'Tierra', 'Pavimento', 'Grava', 'Piedra'],
     required: true,
   },
   badenCalleVa: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   semaforoCalleVa: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   cartelPareCalleVa: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   camaraCalleVa: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   calleVt: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   direccionVt: {
     type: String,
-    enum: [''],
+    enum: [['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE']],
     required: true,
   },
   direccionCalleVt: {
     type: String,
-    enum: [''],
+    enum: [['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE']],
     required: true,
   },
   estadoCalleVt: {
     type: String,
-    enum: [''],
+    enum: ['Buen', 'Regular', 'Mal'],
     required: true,
   },
   tipoCalleVt: {
     type: String,
-    enum: [''],
+    enum: ['Asfalto', 'Tierra', 'Pavimento', 'Grava', 'Piedra'],
     required: true,
   },
   badenCalleVt: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   semaforoCalleVt: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   cartelPareCalleVt: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   camaraCalleVt: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   ciudad: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   provincia: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   descripcion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 200,
+    required: true,
   },
 });
 

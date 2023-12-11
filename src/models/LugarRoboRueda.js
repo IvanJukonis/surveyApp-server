@@ -4,50 +4,60 @@ const { Schema } = mongoose;
 
 const lugarRoboRuedaSchema = new Schema({
   prioridad: {
-
+    type: Boolean,
+    default: false,
   },
   direccion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   ciudad: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   provincia: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
   },
   evidenciaDanos: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   permiso: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   perros: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   alarma: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   presencia: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   disposicionVehiculo: {
     type: String,
-    enum: [''],
+    enum: ['Apoyado sin daños', 'Apoyado con daños', 'Suelo sin soporte'],
     required: true,
   },
   usoEntorno: {
+    type: Boolean,
+    default: false,
+  },
+  descripcion: {
     type: String,
-    enum: [''],
+    minLength: 3,
+    maxLength: 200,
     required: true,
   },
 });

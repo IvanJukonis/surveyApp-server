@@ -54,6 +54,7 @@ const getVehiculoById = async (req, res) => {
 const postVehiculo = async (req, res) => {
   try {
     const {
+      siniestro,
       rol,
       prioridad,
       dominio,
@@ -71,6 +72,7 @@ const postVehiculo = async (req, res) => {
     } = req.body;
 
     const newVehiculo = await Vehiculos.create({
+      siniestro,
       rol,
       prioridad,
       dominio,

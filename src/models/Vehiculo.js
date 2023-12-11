@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const vehiculoSchema = new Schema({
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
   rol: {
     type: String,
     enum: ['VA', 'VT', 'VT2', 'VT3', 'VAd'],
@@ -34,7 +39,7 @@ const vehiculoSchema = new Schema({
     required: true,
   },
   fabricacion: {
-    type: String,
+    type: Date,
     required: true,
   },
   tipo: {
