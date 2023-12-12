@@ -1,4 +1,4 @@
-const LugarSiniestros = require('../models/LugarRoboRueda');
+const LugarSiniestros = require('../models/LugarSiniestro');
 
 const getLugarSiniestro = async (req, res) => {
   try {
@@ -112,7 +112,7 @@ const postLugarSiniestro = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });
@@ -194,7 +194,7 @@ const updateLugarSiniestro = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });

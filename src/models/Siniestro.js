@@ -96,7 +96,6 @@ const siniestroSchema = new Schema({
     type: String,
     minLength: 3,
     maxLength: 500,
-    required: true,
   },
   conclusionLesiones: {
     type: String,
