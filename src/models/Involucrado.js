@@ -21,7 +21,6 @@ const involucradoSchema = new Schema({
     type: String,
     minLength: 3,
     maxLength: 30,
-    required: true,
   },
   titular: {
     type: Boolean,
@@ -59,23 +58,19 @@ const involucradoSchema = new Schema({
   },
   fechaNacimiento: {
     type: Date,
-    required: true,
   },
   domicilio: {
     type: String,
-    required: true,
     minLength: 3,
     maxLength: 20,
   },
   ciudad: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 15,
   },
   pais: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 15,
   },
@@ -83,13 +78,11 @@ const involucradoSchema = new Schema({
     type: Number,
     minLength: 3,
     maxLength: 5,
-    required: true,
   },
   cuit: {
     type: Number,
     minLength: 3,
     maxLength: 15,
-    required: true,
   },
   entrevistado: {
     type: Boolean,
@@ -97,13 +90,11 @@ const involucradoSchema = new Schema({
   },
   ocupacion: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 15,
   },
   direccionOcupacion: {
     type: String,
-    required: true,
     minLength: 2,
     maxLength: 15,
   },
@@ -113,7 +104,6 @@ const involucradoSchema = new Schema({
   },
   licenciaVencimiento: {
     type: Date,
-    required: true,
   },
   licenciaHabilitada: {
     type: Boolean,
@@ -122,7 +112,6 @@ const involucradoSchema = new Schema({
   licenciaCategoria: {
     type: String,
     enum: ['A1', 'A2', 'A3', 'B1', 'B2', 'C1', 'C2', 'C3', 'D1', 'D2', 'D3', 'D4', 'E1'],
-    required: true,
   },
 });
 
