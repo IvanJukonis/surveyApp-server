@@ -84,6 +84,10 @@ const involucradoSchema = new Schema({
     minLength: 3,
     maxLength: 15,
   },
+  lesiones: {
+    type: String,
+    enum: ['Lesiones GRAVES', 'Lesiones LEVES', 'Lesiones REGULARES'],
+  },
   entrevistado: {
     type: Boolean,
     default: true,
