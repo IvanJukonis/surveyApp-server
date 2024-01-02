@@ -96,6 +96,12 @@ const lugarSiniestroSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  calleAd: {
+    type: String,
+    minLength: 3,
+    maxLength: 20,
+    required: true,
+  },
   ciudad: {
     type: String,
     minLength: 3,
