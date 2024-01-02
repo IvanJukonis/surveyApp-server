@@ -18,7 +18,7 @@ const lugarSiniestroSchema = new Schema({
     maxLength: 20,
     required: true,
   },
-  direccionVa: {
+  orientacionVa: {
     type: String,
     enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
@@ -60,7 +60,7 @@ const lugarSiniestroSchema = new Schema({
     maxLength: 20,
     required: true,
   },
-  direccionVt: {
+  orientacionVt: {
     type: String,
     enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
