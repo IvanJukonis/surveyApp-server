@@ -4,148 +4,156 @@ const { Schema } = mongoose;
 
 const entrevistaSiniestroSchema = new Schema({
   fechaEntrevista: {
-
+    type: Date,
+    required: true,
   },
   hrEntrevista: {
-
+    type: Date,
+    required: true,
   },
   rol: {
     type: String,
-    enum: [''],
+    enum: ['CVA', 'CVT', 'PVA', 'PVT', 'TTG', 'TER', 'TVT', 'TVA', 'SOC', 'ABG'],
     required: true,
   },
   firma: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['SIN FIRMA', 'FIRMADO', 'NEGADO', 'ESPERA'],
+    required: true,
   },
   tipoEntrevista: {
     type: String,
-    enum: [''],
+    enum: ['PRESENCIAL', 'TELEFONICA', 'VIDEOLLAMADA'],
     required: true,
   },
   fechaSiniestro: {
-
+    type: Date,
+    required: true,
   },
   hrAproximada: {
-
+    type: Date,
+    required: true,
   },
   hrNotificacion: {
-
+    type: Date,
+    required: true,
   },
   hrConfirmacion: {
-
+    type: Date,
+    required: true,
   },
   hrReclamo: {
-
+    type: Date,
+    required: true,
   },
   relacionVh: {
     type: String,
-    enum: [''],
+    enum: ['Titular', 'Autorizado', 'Pasajero', 'No autorizado'],
     required: true,
   },
   habilitacionDni: {
     type: String,
-    enum: [''],
+    enum: ['DNI habilitado', 'DNI no habilitado'],
     required: true,
   },
   habilitacionLc: {
     type: String,
-    enum: [''],
+    enum: ['Licencia de conducir habilitada', 'Licencia de conducir no habilitada'],
     required: true,
   },
   habilitacionTv: {
     type: String,
-    enum: [''],
+    enum: ['Tarjeta verde habilitada', 'Tarjeta verde no habilitada'],
     required: true,
   },
   habilitacionTa: {
     type: String,
-    enum: [''],
+    enum: ['Tarjeta azul habilitada', 'Tarjeta verde no habilitada'],
     required: true,
   },
   aportaDni: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   aportaLc: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   aportaTv: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   aportaTa: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   lesiones: {
     type: String,
-    enum: [''],
+    enum: ['Hubo lesionados', 'No hubo lesionados'],
     required: true,
   },
   reparaciones: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   comprobantesDaños: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   tipoLesiones: {
     type: String,
-    enum: [''],
+    enum: ['Lesiones GRAVES', 'Lesiones LEVES', 'Lesiones REGULARES'],
     required: true,
   },
   descLesiones: {
-
+    type: String,
+    required: true,
+    minLength: 3,
+    maxLength: 50,
   },
   comprobantesLesiones: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   aporteLesiones: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   fotosLesiones: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   gastos: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   descGastos: {
-
+    type: String,
+    required: true,
+    minLength: 3,
+    maxLength: 50,
   },
   comprobantesGastos: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   zonaImpactoVa: {
     type: String,
-    enum: [''],
     required: true,
+    minLength: 3,
+    maxLength: 50,
   },
   zonaImpactoVt: {
     type: String,
-    enum: [''],
     required: true,
+    minLength: 3,
+    maxLength: 50,
   },
   relato: {
-
+    type: String,
+    required: true,
+    minLength: 3,
+    maxLength: 500,
   },
 });
 

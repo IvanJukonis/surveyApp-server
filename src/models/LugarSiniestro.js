@@ -23,7 +23,7 @@ const lugarSiniestroSchema = new Schema({
     enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
   },
-  direcionCalleVa: {
+  direccionCalleVa: {
     type: String,
     enum: ['SUR', 'ESTE', 'OESTE', 'NORTE', 'SUDOESTE', 'NOROESTE', 'NORESTE', 'SUDESTE'],
     required: true,
