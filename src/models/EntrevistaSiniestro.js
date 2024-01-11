@@ -3,6 +3,26 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const entrevistaSiniestroSchema = new Schema({
+  involucrado: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Involucrado',
+    required: true,
+  },
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
+  nombreEntrevistado: {
+    type: String,
+    minLength: 3,
+    maxLength: 50,
+  },
+  apellidoEntrevistado: {
+    type: String,
+    minLength: 3,
+    maxLength: 50,
+  },
   fechaEntrevista: {
     type: Date,
     required: true,

@@ -2,7 +2,16 @@ const EntrevistaRoboRueda = require('../models/EntrevistaRoboRueda');
 
 const getEntrevistaRoboRueda = async (req, res) => {
   try {
-    const entrevistaRoboRuedas = await EntrevistaRoboRueda.find();
+    const entrevistaRoboRuedas = await EntrevistaRoboRueda.aggregate([
+      {
+        $lookup: {
+          from: 'involucrados',
+          localField: 'involucrado',
+          foreignField: '_id',
+          as: 'involucradoData',
+        },
+      },
+    ]);
 
     if (entrevistaRoboRuedas.length > 0) {
       return res.status(200).json({
@@ -18,7 +27,7 @@ const getEntrevistaRoboRueda = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });
@@ -53,6 +62,10 @@ const getEntrevistaRoboRuedaById = async (req, res) => {
 
 const postEntrevistaRoboRueda = async (req, res) => {
   const {
+    involucrado,
+    siniestro,
+    nombreEntrevistado,
+    apellidoEntrevistado,
     fechaEntrevista,
     hrEntrevista,
     rol,
@@ -88,6 +101,10 @@ const postEntrevistaRoboRueda = async (req, res) => {
 
   try {
     const entrevistaRoboRuedas = await EntrevistaRoboRueda.create({
+      involucrado,
+      siniestro,
+      nombreEntrevistado,
+      apellidoEntrevistado,
       fechaEntrevista,
       hrEntrevista,
       rol,
@@ -139,6 +156,10 @@ const updateEntrevistaRoboRueda = async (req, res) => {
   const { id } = req.params;
 
   const {
+    involucrado,
+    siniestro,
+    nombreEntrevistado,
+    apellidoEntrevistado,
     fechaEntrevista,
     hrEntrevista,
     rol,
@@ -176,6 +197,10 @@ const updateEntrevistaRoboRueda = async (req, res) => {
     const entrevistaRoboRuedas = await EntrevistaRoboRueda.findByIdAndUpdate(
       id,
       {
+        involucrado,
+        siniestro,
+        nombreEntrevistado,
+        apellidoEntrevistado,
         fechaEntrevista,
         hrEntrevista,
         rol,

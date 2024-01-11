@@ -2,7 +2,16 @@ const Involucrado = require('../models/Involucrado');
 
 const getInvolucrado = async (req, res) => {
   try {
-    const involucrado = await Involucrado.find();
+    const involucrado = await Involucrado.aggregate([
+      {
+        $lookup: {
+          from: 'siniestros',
+          localField: 'siniestro',
+          foreignField: '_id',
+          as: 'siniestroData',
+        },
+      },
+    ]);
 
     if (involucrado.length > 0) {
       return res.status(200).json({

@@ -53,6 +53,10 @@ const getEntrevistaSiniestroById = async (req, res) => {
 
 const postEntrevistaSiniestro = async (req, res) => {
   const {
+    involucrado,
+    siniestro,
+    nombreEntrevistado,
+    apellidoEntrevistado,
     fechaEntrevista,
     hrEntrevista,
     rol,
@@ -90,6 +94,10 @@ const postEntrevistaSiniestro = async (req, res) => {
 
   try {
     const entrevistaSiniestros = await EntrevistaSiniestros.create({
+      involucrado,
+      siniestro,
+      nombreEntrevistado,
+      apellidoEntrevistado,
       fechaEntrevista,
       hrEntrevista,
       rol,
@@ -143,6 +151,10 @@ const updateEntrevistaSiniestro = async (req, res) => {
   const { id } = req.params;
 
   const {
+    involucrado,
+    siniestro,
+    nombreEntrevistado,
+    apellidoEntrevistado,
     fechaEntrevista,
     hrEntrevista,
     rol,
@@ -182,6 +194,10 @@ const updateEntrevistaSiniestro = async (req, res) => {
     const entrevistaSiniestros = await EntrevistaSiniestros.findByIdAndUpdate(
       id,
       {
+        involucrado,
+        siniestro,
+        nombreEntrevistado,
+        apellidoEntrevistado,
         fechaEntrevista,
         hrEntrevista,
         rol,
