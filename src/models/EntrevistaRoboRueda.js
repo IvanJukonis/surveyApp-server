@@ -6,7 +6,10 @@ const entrevistaRoboRuedaSchema = new Schema({
   involucrado: {
     type: [Schema.Types.ObjectId],
     ref: 'Involucrado',
-    required: true,
+  },
+  entrevistado: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Involucrado',
   },
   siniestro: {
     type: [Schema.Types.ObjectId],
@@ -52,44 +55,35 @@ const entrevistaRoboRuedaSchema = new Schema({
   },
   hrAproximada: {
     type: Date,
-    required: true,
   },
   hrNotificacion: {
     type: Date,
-    required: true,
   },
   hrConfirmacion: {
     type: Date,
-    required: true,
   },
   hrReclamo: {
     type: Date,
-    required: true,
   },
   relacionVh: {
     type: String,
     enum: ['Titular', 'Autorizado', 'Pasajero', 'No autorizado'],
-    required: true,
   },
   habilitacionDni: {
     type: String,
     enum: ['DNI habilitado', 'DNI no habilitado'],
-    required: true,
   },
   habilitacionLc: {
     type: String,
     enum: ['Licencia de conducir habilitada', 'Licencia de conducir no habilitada'],
-    required: true,
   },
   habilitacionTv: {
     type: String,
     enum: ['Tarjeta verde habilitada', 'Tarjeta verde no habilitada'],
-    required: true,
   },
   habilitacionTa: {
     type: String,
     enum: ['Tarjeta azul habilitada', 'Tarjeta verde no habilitada'],
-    required: true,
   },
   aportaDni: {
     type: Boolean,
@@ -110,7 +104,6 @@ const entrevistaRoboRuedaSchema = new Schema({
   usoVh: {
     type: String,
     enum: ['Particular', 'Profesional', 'Servicio', 'Otro'],
-    required: true,
   },
   tipoUsoVh: {
     type: String,
@@ -145,7 +138,6 @@ const entrevistaRoboRuedaSchema = new Schema({
   },
   bulones: {
     type: String,
-    minLength: 3,
     maxLength: 50,
   },
   prestaRueda: {
