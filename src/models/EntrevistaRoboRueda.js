@@ -7,6 +7,10 @@ const entrevistaRoboRuedaSchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: 'Involucrado',
   },
+  vehiculo: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Vehiculo',
+  },
   entrevistado: {
     type: [Schema.Types.ObjectId],
     ref: 'Involucrado',

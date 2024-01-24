@@ -63,6 +63,7 @@ const getEntrevistaRoboRuedaById = async (req, res) => {
 const postEntrevistaRoboRueda = async (req, res) => {
   const {
     involucrado,
+    vehiculo,
     siniestro,
     entrevistado,
     nombreEntrevistado,
@@ -103,6 +104,7 @@ const postEntrevistaRoboRueda = async (req, res) => {
   try {
     const entrevistaRoboRuedas = await EntrevistaRoboRueda.create({
       involucrado,
+      vehiculo,
       siniestro,
       entrevistado,
       nombreEntrevistado,
@@ -159,6 +161,7 @@ const updateEntrevistaRoboRueda = async (req, res) => {
 
   const {
     involucrado,
+    vehiculo,
     siniestro,
     entrevistado,
     nombreEntrevistado,
@@ -201,6 +204,7 @@ const updateEntrevistaRoboRueda = async (req, res) => {
       id,
       {
         involucrado,
+        vehiculo,
         siniestro,
         entrevistado,
         nombreEntrevistado,
