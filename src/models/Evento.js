@@ -13,35 +13,37 @@ const eventoSchema = new Schema({
   },
   tipo: {
     type: String,
-    enum: [''],
+    enum: ['Acontesimiento', 'Sospecha'],
     required: true,
   },
   fecha: {
-
+    type: Date,
   },
   hora: {
-
+    type: Date,
   },
   descripcion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
   comprobar: {
     type: String,
-    enum: [''],
+    enum: ['A comprobar', 'Sin necesidad', 'Comprobado', 'No comprobado'],
     required: true,
   },
   comprobado: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   comprobable: {
-    type: String,
-    enum: [''],
-    required: true,
+    type: Boolean,
+    default: false,
   },
   resolucion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
 });
 

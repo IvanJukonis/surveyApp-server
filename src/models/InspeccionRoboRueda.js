@@ -9,21 +9,35 @@ const inspeccionRoboRuedaSchema = new Schema({
     required: true,
   },
   fecha: {
-
+    type: Date,
   },
   hora: {
-
+    type: Date,
   },
   permisos: {
     type: String,
-    enum: [''],
+    enum: ['Inspeccion permitida', 'Inspeccion no permitida', 'Inspeccion dificultada'],
+    required: true,
+  },
+  programada: {
+    type: String,
+    enum: ['Inspeccion programada', 'Inspeccion no programada'],
     required: true,
   },
   disposicion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
-  descripcion: {
-
+  daños: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
+  },
+  conclusion: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
 });
 

@@ -63,7 +63,7 @@ const postInspeccionSiniestro = async (req, res) => {
     descripcionDaños,
     numChasis,
     reparacion,
-    coincidencia,
+    coincidenciaDaños,
     conclusion,
   } = req.body;
   try {
@@ -78,7 +78,7 @@ const postInspeccionSiniestro = async (req, res) => {
       descripcionDaños,
       numChasis,
       reparacion,
-      coincidencia,
+      coincidenciaDaños,
       conclusion,
     });
 
@@ -110,7 +110,7 @@ const updateInspeccionSiniestro = async (req, res) => {
     descripcionDaños,
     numChasis,
     reparacion,
-    coincidencia,
+    coincidenciaDaños,
     conclusion,
   } = req.body;
 
@@ -128,7 +128,7 @@ const updateInspeccionSiniestro = async (req, res) => {
         descripcionDaños,
         numChasis,
         reparacion,
-        coincidencia,
+        coincidenciaDaños,
         conclusion,
       },
       { new: true },

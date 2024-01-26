@@ -4,74 +4,84 @@ const { Schema } = mongoose;
 
 const ruedaSchema = new Schema({
   descripcion: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
   marca: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
   numDot: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
   numLlanta: {
-
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
   tipo: {
     type: String,
-    enum: [''],
+    enum: ['Original', 'Suplente', 'Prestada'],
     required: true,
   },
   tipoLlanta: {
     type: String,
-    enum: [''],
+    enum: ['Aleacion', 'Chapa', 'Otro'],
     required: true,
   },
-  posicion: {
+  posicionActual: {
     type: String,
-    enum: [''],
+    enum: ['DI', 'DD', 'TI', 'TD', 'AUX', 'N/N'],
     required: true,
   },
   fechaColocacion: {
-
+    type: Date,
   },
-  anterior: {
-
+  posicionPrevia: {
+    type: String,
+    enum: ['DI', 'DD', 'TI', 'TD', 'AUX', 'N/N'],
+    required: true,
   },
-  actual: {
-
+  posicionTransitoria: {
+    type: String,
+    enum: ['DI', 'DD', 'TI', 'TD', 'AUX', 'N/N'],
+    required: true,
   },
   sustraida: {
-
-  },
-  prestada: {
-
-  },
-  auxiliar: {
-
+    type: Boolean,
+    default: false,
   },
   estado: {
     type: String,
-    enum: [''],
+    enum: ['Nuevo', 'Medio desgastado', 'Desgastado'],
     required: true,
   },
   aporteFoto: {
     type: String,
-    enum: [''],
+    enum: ['Se aportan fotos previas', 'No se aportan fotos previas'],
     required: true,
   },
   metadatosFoto: {
     type: String,
-    enum: [''],
+    enum: ['Metadatos presentes', 'Sin metadatos presentes'],
     required: true,
   },
-  comprobantesCompra: {
-    type: String,
-    enum: [''],
-    required: true,
+  factura: {
+    type: Boolean,
+    default: false,
   },
-  aporteComprobante: {
+  aporteFactura: {
+    type: Boolean,
+    default: false,
+  },
+  anotaciones: {
     type: String,
-    enum: [''],
-    required: true,
+    minLength: 3,
+    maxLength: 500,
   },
 });
 
