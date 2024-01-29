@@ -12,6 +12,8 @@ const rueda = require('./rueda');
 const evento = require('./evento');
 const novedad = require('./novedad');
 const siniestro = require('./siniestro');
+const inspeccionSiniestro = require('./inspeccionSiniestro');
+const inspeccionRoboRueda = require('./inspeccionRoboRueda');
 
 const router = express.Router();
 
@@ -27,5 +29,7 @@ router.use('/rueda', rueda);
 router.use('/evento', evento);
 router.use('/novedad', novedad);
 router.use('/siniestro', siniestro);
+router.use('/inspeccionSiniestro', inspeccionSiniestro);
+router.use('/inspeccionRoboRueda', inspeccionRoboRueda);
 
 module.exports = router;
