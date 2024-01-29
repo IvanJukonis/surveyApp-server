@@ -13,6 +13,16 @@ const entrevistaSiniestroSchema = new Schema({
     ref: 'Siniestro',
     required: true,
   },
+  vehiculo: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Vehiculo',
+    required: true,
+  },
+  evento: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Evento',
+    required: true,
+  },
   nombreEntrevistado: {
     type: String,
     minLength: 3,

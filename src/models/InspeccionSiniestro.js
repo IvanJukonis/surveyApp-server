@@ -8,6 +8,16 @@ const inspeccionSiniestroSchema = new Schema({
     ref: 'Siniestro',
     required: true,
   },
+  involucrado: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Involucrado',
+    required: true,
+  },
+  vehiculo: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Vehiculo',
+    required: true,
+  },
   fotos: {
     type: String,
     enum: ['Se toman fotografias del VH', 'No se toman fotografias del VH'],

@@ -54,6 +54,8 @@ const getInspeccionSiniestroById = async (req, res) => {
 const postInspeccionSiniestro = async (req, res) => {
   const {
     siniestro,
+    vehiculo,
+    involucrado,
     fecha,
     hora,
     fotos,
@@ -70,6 +72,8 @@ const postInspeccionSiniestro = async (req, res) => {
   try {
     const inspeccionSiniestro = await InspeccionSiniestros.create({
       siniestro,
+      vehiculo,
+      involucrado,
       fecha,
       hora,
       fotos,
@@ -103,6 +107,8 @@ const updateInspeccionSiniestro = async (req, res) => {
 
   const {
     siniestro,
+    vehiculo,
+    involucrado,
     fecha,
     hora,
     fotos,
@@ -122,6 +128,8 @@ const updateInspeccionSiniestro = async (req, res) => {
       id,
       {
         siniestro,
+        vehiculo,
+        involucrado,
         fecha,
         hora,
         fotos,

@@ -53,6 +53,9 @@ const getRuedaById = async (req, res) => {
 
 const postRueda = async (req, res) => {
   const {
+    siniestro,
+    involucrado,
+    vehiculo,
     descripcion,
     marca,
     numDot,
@@ -74,6 +77,9 @@ const postRueda = async (req, res) => {
 
   try {
     const ruedas = await Ruedas.create({
+      siniestro,
+      involucrado,
+      vehiculo,
       descripcion,
       marca,
       numDot,
@@ -111,6 +117,9 @@ const updateRueda = async (req, res) => {
   const { id } = req.params;
 
   const {
+    siniestro,
+    involucrado,
+    vehiculo,
     descripcion,
     marca,
     numDot,
@@ -134,6 +143,9 @@ const updateRueda = async (req, res) => {
     const ruedas = await Ruedas.findByIdAndUpdate(
       id,
       {
+        siniestro,
+        involucrado,
+        vehiculo,
         descripcion,
         marca,
         numDot,

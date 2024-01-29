@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const eventoSchema = new Schema({
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
   visibilidadEntrevista: {
     type: Boolean,
     default: false,

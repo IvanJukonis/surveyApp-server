@@ -20,6 +20,16 @@ const entrevistaRoboRuedaSchema = new Schema({
     ref: 'Siniestro',
     required: true,
   },
+  evento: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Evento',
+    required: true,
+  },
+  rueda: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Rueda',
+    required: true,
+  },
   nombreEntrevistado: {
     type: String,
     minLength: 3,

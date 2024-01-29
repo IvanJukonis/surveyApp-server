@@ -55,6 +55,8 @@ const postEntrevistaSiniestro = async (req, res) => {
   const {
     involucrado,
     siniestro,
+    vehiculo,
+    evento,
     nombreEntrevistado,
     apellidoEntrevistado,
     fechaEntrevista,
@@ -96,6 +98,8 @@ const postEntrevistaSiniestro = async (req, res) => {
     const entrevistaSiniestros = await EntrevistaSiniestros.create({
       involucrado,
       siniestro,
+      vehiculo,
+      evento,
       nombreEntrevistado,
       apellidoEntrevistado,
       fechaEntrevista,
@@ -153,6 +157,8 @@ const updateEntrevistaSiniestro = async (req, res) => {
   const {
     involucrado,
     siniestro,
+    vehiculo,
+    evento,
     nombreEntrevistado,
     apellidoEntrevistado,
     fechaEntrevista,
@@ -196,6 +202,8 @@ const updateEntrevistaSiniestro = async (req, res) => {
       {
         involucrado,
         siniestro,
+        vehiculo,
+        evento,
         nombreEntrevistado,
         apellidoEntrevistado,
         fechaEntrevista,

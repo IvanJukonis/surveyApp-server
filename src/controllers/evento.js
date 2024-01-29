@@ -53,6 +53,7 @@ const getEventoById = async (req, res) => {
 
 const postEvento = async (req, res) => {
   const {
+    siniestro,
     visibilidadEntrevista,
     visibilidadInforme,
     tipo,
@@ -67,6 +68,7 @@ const postEvento = async (req, res) => {
 
   try {
     const eventos = await Eventos.create({
+      siniestro,
       visibilidadEntrevista,
       visibilidadInforme,
       tipo,
@@ -97,6 +99,7 @@ const updateEvento = async (req, res) => {
   const { id } = req.params;
 
   const {
+    siniestro,
     visibilidadEntrevista,
     visibilidadInforme,
     tipo,
@@ -113,6 +116,7 @@ const updateEvento = async (req, res) => {
     const eventos = await Eventos.findByIdAndUpdate(
       id,
       {
+        siniestro,
         visibilidadEntrevista,
         visibilidadInforme,
         tipo,

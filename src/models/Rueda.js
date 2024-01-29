@@ -3,6 +3,21 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ruedaSchema = new Schema({
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
+  involucrado: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Involucrado',
+    required: true,
+  },
+  vehiculo: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Vehiculo',
+    required: true,
+  },
   descripcion: {
     type: String,
     minLength: 3,

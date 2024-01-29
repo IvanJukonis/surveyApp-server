@@ -54,6 +54,9 @@ const getInspeccionRoboRuedaById = async (req, res) => {
 const postInspeccionRoboRueda = async (req, res) => {
   const {
     siniestro,
+    vehiculo,
+    involucrado,
+    rueda,
     fecha,
     hora,
     permiso,
@@ -67,6 +70,9 @@ const postInspeccionRoboRueda = async (req, res) => {
   try {
     const inspeccionRoboRuedas = await InspeccionRoboRuedas.create({
       siniestro,
+      vehiculo,
+      involucrado,
+      rueda,
       fecha,
       hora,
       permiso,
@@ -97,6 +103,9 @@ const updateInspeccionRoboRueda = async (req, res) => {
   const {
     siniestro,
     fecha,
+    vehiculo,
+    involucrado,
+    rueda,
     hora,
     permiso,
     programada,
@@ -112,6 +121,9 @@ const updateInspeccionRoboRueda = async (req, res) => {
       {
         siniestro,
         fecha,
+        vehiculo,
+        involucrado,
+        rueda,
         hora,
         permiso,
         programada,
