@@ -3,6 +3,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const inspeccionRoboRuedaSchema = new Schema({
+  siniestro: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Siniestro',
+    required: true,
+  },
   fotos: {
     type: String,
     enum: ['Se toman fotografias del VH', 'No se toman fotografias del VH'],

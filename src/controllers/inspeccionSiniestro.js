@@ -53,6 +53,7 @@ const getInspeccionSiniestroById = async (req, res) => {
 
 const postInspeccionSiniestro = async (req, res) => {
   const {
+    siniestro,
     fecha,
     hora,
     fotos,
@@ -68,6 +69,7 @@ const postInspeccionSiniestro = async (req, res) => {
   } = req.body;
   try {
     const inspeccionSiniestro = await InspeccionSiniestros.create({
+      siniestro,
       fecha,
       hora,
       fotos,
@@ -89,7 +91,7 @@ const postInspeccionSiniestro = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Internal Server Error',
+      message: error,
       data: null,
       error: true,
     });
@@ -100,6 +102,7 @@ const updateInspeccionSiniestro = async (req, res) => {
   const { id } = req.params;
 
   const {
+    siniestro,
     fecha,
     hora,
     fotos,
@@ -118,6 +121,7 @@ const updateInspeccionSiniestro = async (req, res) => {
     const inspeccionSiniestros = await InspeccionSiniestros.findByIdAndUpdate(
       id,
       {
+        siniestro,
         fecha,
         hora,
         fotos,
