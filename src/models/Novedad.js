@@ -38,6 +38,10 @@ const novedadSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  informe: {
+    type: Boolean,
+    default: true,
+  },
   respuesta: {
     type: Boolean,
     default: true,

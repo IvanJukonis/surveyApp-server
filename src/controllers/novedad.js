@@ -61,6 +61,7 @@ const postNovedad = async (req, res) => {
     relacion,
     descripcion,
     visibilidad,
+    informe,
     respuesta,
   } = req.body;
 
@@ -74,6 +75,7 @@ const postNovedad = async (req, res) => {
       relacion,
       descripcion,
       visibilidad,
+      informe,
       respuesta,
     });
 
@@ -103,6 +105,7 @@ const updateNovedad = async (req, res) => {
     relacion,
     descripcion,
     visibilidad,
+    informe,
     respuesta,
   } = req.body;
 
@@ -118,6 +121,7 @@ const updateNovedad = async (req, res) => {
         relacion,
         descripcion,
         visibilidad,
+        informe,
         respuesta,
       },
       { new: true },
