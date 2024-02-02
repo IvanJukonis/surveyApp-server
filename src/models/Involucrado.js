@@ -79,10 +79,10 @@ const involucradoSchema = new Schema({
     minLength: 3,
     maxLength: 5,
   },
-  cuit: {
-    type: Number,
+  descLesiones: {
+    type: String,
     minLength: 3,
-    maxLength: 15,
+    maxLength: 300,
   },
   lesiones: {
     type: String,
@@ -109,9 +109,13 @@ const involucradoSchema = new Schema({
   licenciaVencimiento: {
     type: Date,
   },
+  licenciaPosesion: {
+    type: String,
+    enum: ['Posee', 'Renovacion', 'Perdida sin denuncia', 'Perdida con denuncia'],
+  },
   licenciaHabilitada: {
-    type: Boolean,
-    default: true,
+    type: String,
+    enum: ['Lesiones GRAVES', 'Lesiones LEVES', 'Lesiones REGULARES'],
   },
   licenciaCategoria: {
     type: String,

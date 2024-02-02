@@ -34,7 +34,7 @@ const inspeccionRoboRuedaSchema = new Schema({
   hora: {
     type: Date,
   },
-  permisos: {
+  permiso: {
     type: String,
     enum: ['Inspeccion permitida', 'Inspeccion no permitida', 'Inspeccion dificultada'],
     required: true,
