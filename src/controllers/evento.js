@@ -63,6 +63,7 @@ const postEvento = async (req, res) => {
     comprobar,
     comprobado,
     comprobable,
+    predisposicion,
     resolucion,
   } = req.body;
 
@@ -78,6 +79,7 @@ const postEvento = async (req, res) => {
       comprobar,
       comprobado,
       comprobable,
+      predisposicion,
       resolucion,
     });
 
@@ -109,6 +111,7 @@ const updateEvento = async (req, res) => {
     comprobar,
     comprobado,
     comprobable,
+    predisposicion,
     resolucion,
   } = req.body;
 
@@ -126,6 +129,7 @@ const updateEvento = async (req, res) => {
         comprobar,
         comprobado,
         comprobable,
+        predisposicion,
         resolucion,
       },
       { new: true },

@@ -30,7 +30,7 @@ const eventoSchema = new Schema({
   descripcion: {
     type: String,
     minLength: 3,
-    maxLength: 500,
+    maxLength: 200,
   },
   comprobar: {
     type: String,
@@ -42,13 +42,19 @@ const eventoSchema = new Schema({
     default: false,
   },
   comprobable: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['Totalmente comprobable', 'Comprobable', 'Parcialmente comprobable', 'No comprobable'],
+    required: true,
+  },
+  predisposicion: {
+    type: String,
+    enum: ['Buena', 'Media', 'Mala', 'Negacion'],
+    required: true,
   },
   resolucion: {
     type: String,
     minLength: 3,
-    maxLength: 500,
+    maxLength: 200,
   },
 });
 
