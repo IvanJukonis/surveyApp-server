@@ -8,6 +8,10 @@ const lugarRoboRuedaSchema = new Schema({
     ref: 'Siniestro',
     required: true,
   },
+  entrevistaRoboRueda: {
+    type: [Schema.Types.ObjectId],
+    ref: 'EntrevistaRoboRueda',
+  },
   prioridad: {
     type: Boolean,
     default: false,
@@ -31,20 +35,44 @@ const lugarRoboRuedaSchema = new Schema({
     required: true,
   },
   evidenciaDanos: {
+    type: String,
+    enum: ['Daños visibles', 'Sin daños', 'Daños inconsistentes'],
+    required: true,
+  },
+  daños: {
+    type: String,
+    minLength: 3,
+    maxLength: 200,
+    required: true,
+  },
+  inspeccion: {
     type: Boolean,
     default: false,
   },
   permiso: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['Permitida', 'Dificultada', 'No permitida'],
+    required: true,
   },
-  perros: {
-    type: Boolean,
-    default: false,
+  mascotas: {
+    type: String,
+    enum: ['Proteccion de mascotas', 'Sin proteccion de mascotas', 'Mascotas alertando'],
+    required: true,
+  },
+  zona: {
+    type: String,
+    enum: ['Muy transitada', 'Medianamente transitada', 'Poco transitada', ' Transito nulo'],
+    required: true,
   },
   alarma: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['Activada', 'Desactivada', 'Desconoce', 'Probablemente activa'],
+    required: true,
+  },
+  testigos: {
+    type: String,
+    enum: ['Encontrados', 'No encontrados', 'No colaboradores'],
+    required: true,
   },
   presencia: {
     type: Boolean,
@@ -52,12 +80,13 @@ const lugarRoboRuedaSchema = new Schema({
   },
   disposicionVehiculo: {
     type: String,
-    enum: ['Apoyado sin daños', 'Apoyado con daños', 'Suelo sin soporte'],
+    enum: ['Apoyado sin daños', 'Apoyado con daños', 'Suelo sin soporte', 'Suelo acomodado', 'Acomodado'],
     required: true,
   },
   usoEntorno: {
-    type: Boolean,
-    default: false,
+    type: String,
+    enum: ['No utilzado', 'Utilizado', 'Sin evidencia'],
+    required: true,
   },
   descripcion: {
     type: String,
