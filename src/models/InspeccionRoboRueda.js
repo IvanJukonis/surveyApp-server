@@ -16,16 +16,10 @@ const inspeccionRoboRuedaSchema = new Schema({
   involucrado: {
     type: [Schema.Types.ObjectId],
     ref: 'Involucrado',
-    required: true,
   },
   vehiculo: {
     type: [Schema.Types.ObjectId],
     ref: 'Vehiculo',
-    required: true,
-  },
-  fotos: {
-    type: String,
-    enum: ['Se toman fotografias del VH', 'No se toman fotografias del VH'],
     required: true,
   },
   fecha: {
@@ -34,6 +28,20 @@ const inspeccionRoboRuedaSchema = new Schema({
   hora: {
     type: Date,
   },
+  presencia: {
+    type: Boolean,
+    default: false,
+  },
+  direccion: {
+    type: String,
+    minLength: 3,
+    maxLength: 30,
+  },
+  ciudad: {
+    type: String,
+    minLength: 3,
+    maxLength: 30,
+  },
   permiso: {
     type: String,
     enum: ['Inspeccion permitida', 'Inspeccion no permitida', 'Inspeccion dificultada'],
@@ -41,23 +49,28 @@ const inspeccionRoboRuedaSchema = new Schema({
   },
   programada: {
     type: String,
-    enum: ['Inspeccion programada', 'Inspeccion no programada'],
+    enum: ['Inspeccion programada', 'Inspeccion no programada', 'Inspeccion neutra'],
+    required: true,
+  },
+  resultado: {
+    type: String,
+    enum: ['Inconsistencias', 'Sin inconsistencias', 'Fraudulencia'],
     required: true,
   },
   disposicion: {
     type: String,
     minLength: 3,
-    maxLength: 500,
+    maxLength: 100,
   },
   daños: {
     type: String,
     minLength: 3,
-    maxLength: 500,
+    maxLength: 100,
   },
   conclusion: {
     type: String,
     minLength: 3,
-    maxLength: 500,
+    maxLength: 200,
   },
 });
 
