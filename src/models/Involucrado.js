@@ -114,8 +114,8 @@ const involucradoSchema = new Schema({
     enum: ['Posee', 'Renovacion', 'Perdida sin denuncia', 'Perdida con denuncia'],
   },
   licenciaHabilitada: {
-    type: String,
-    enum: ['Lesiones GRAVES', 'Lesiones LEVES', 'Lesiones REGULARES'],
+    type: Boolean,
+    default: true,
   },
   licenciaCategoria: {
     type: String,
