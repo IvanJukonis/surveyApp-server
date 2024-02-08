@@ -107,27 +107,41 @@ const updateVehiculo = async (req, res) => {
   try {
     const { id } = req.params;
     const {
-      involved,
+      siniestro,
+      rol,
+      prioridad,
       dominio,
       marca,
       modelo,
       color,
       uso,
-      año,
-      descripcionDaños,
+      fabricacion,
+      tipo,
+      fechaAdquisicion,
+      danos,
+      descripcionDanos,
+      alarma,
+      cierreCentralizado,
     } = req.body;
 
     const updatedVehiculo = await Vehiculos.findByIdAndUpdate(
       id,
       {
-        involved,
+        siniestro,
+        rol,
+        prioridad,
         dominio,
         marca,
         modelo,
         color,
         uso,
-        año,
-        descripcionDaños,
+        fabricacion,
+        tipo,
+        fechaAdquisicion,
+        danos,
+        descripcionDanos,
+        alarma,
+        cierreCentralizado,
       },
       { new: true },
     );
