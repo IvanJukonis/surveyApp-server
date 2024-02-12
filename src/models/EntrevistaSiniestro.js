@@ -23,6 +23,10 @@ const entrevistaSiniestroSchema = new Schema({
     ref: 'Evento',
     required: true,
   },
+  entrevistado: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Involucrado',
+  },
   nombreEntrevistado: {
     type: String,
     minLength: 3,
@@ -48,12 +52,12 @@ const entrevistaSiniestroSchema = new Schema({
   },
   firma: {
     type: String,
-    enum: ['SIN FIRMA', 'FIRMADO', 'NEGADO', 'ESPERA'],
+    enum: ['Sin Firma', 'Firmado', 'Negado', 'Espera'],
     required: true,
   },
   tipoEntrevista: {
     type: String,
-    enum: ['PRESENCIAL', 'TELEFONICA', 'VIDEOLLAMADA'],
+    enum: ['Presencial', 'Telefonica', 'Videollamada'],
     required: true,
   },
   fechaSiniestro: {
@@ -98,7 +102,7 @@ const entrevistaSiniestroSchema = new Schema({
   },
   habilitacionTa: {
     type: String,
-    enum: ['Tarjeta azul habilitada', 'Tarjeta verde no habilitada'],
+    enum: ['Tarjeta azul habilitada', 'Tarjeta azul no habilitada'],
     required: true,
   },
   aportaDni: {
