@@ -132,13 +132,30 @@ const siniestroSchema = new Schema({
     maxLength: 500,
   },
   fechaFinalizacion: {
-    type: Date,
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
-  fechaContactoAsegurado: {
-    type: Date,
+  statsSolicitudCorreccion: {
+    type: String,
+    enum: ['Muy alto', 'Alto', 'Moderado', 'Bajo', 'Nulo'],
   },
-  fechaContactoTercero: {
-    type: Date,
+  statsGramaticaProlijidad: {
+    type: String,
+    enum: ['Muy alto', 'Alto', 'Moderado', 'Bajo', 'Nulo'],
+  },
+  statsDesarrolloSiniestro: {
+    type: String,
+    enum: ['Muy alto', 'Alto', 'Moderado', 'Bajo', 'Nulo'],
+  },
+  statsJustificacionDemoras: {
+    type: String,
+    enum: ['No', 'Si', 'Moderado'],
+  },
+  conlcusionSiniestro: {
+    type: String,
+    minLength: 3,
+    maxLength: 500,
   },
 });
 
