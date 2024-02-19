@@ -1,4 +1,5 @@
 const Controladores = require('../models/Controlador');
+const firebaseApp = require('../helper/firebase/firebase-config');
 
 const getControlador = async (req, res) => {
   try {
@@ -75,12 +76,41 @@ const postControlador = async (req, res) => {
     estadoCivil,
     activo,
     cuentaBancaria,
-    nombreUsuario,
-    contraseña,
   } = req.body;
 
+  let firebaseUid;
+
   try {
-    const controladores = await Controladores.create({
+    const existingControlador = await Controladores.findOne({ email });
+    const existingDNIControlador = await Controladores.findOne({ dni });
+
+    if (existingControlador) {
+      return res.status(400).json({
+        message: 'Email already exists',
+        data: null,
+        error: true,
+      });
+    }
+
+    if (existingDNIControlador) {
+      return res.status(400).json({
+        message: 'This DNI is registered',
+        data: null,
+        error: true,
+      });
+    }
+
+    const newFirebaseUser = await firebaseApp.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    firebaseUid = newFirebaseUser.uid;
+
+    await firebaseApp.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'CONTROLADOR' });
+
+    const result = await Controladores.create({
+      firebaseUid,
       tipo,
       nombre,
       apellido,
@@ -103,18 +133,23 @@ const postControlador = async (req, res) => {
       estadoCivil,
       activo,
       cuentaBancaria,
-      nombreUsuario,
-      contraseña,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Controlador created',
-      data: controladores,
+      data: result,
       error: false,
     });
   } catch (error) {
-    res.status(500).json({
-      message: 'Internal Server Error',
+    if (error.message.includes('E11000 duplicate key error collection')) {
+      return res.status(400).json({
+        message: 'Email already exists',
+        data: null,
+        error: true,
+      });
+    }
+    return res.status(500).json({
+      message: error,
       data: null,
       error: true,
     });
@@ -147,8 +182,6 @@ const updateControlador = async (req, res) => {
     estadoCivil,
     activo,
     cuentaBancaria,
-    nombreUsuario,
-    contraseña,
   } = req.body;
 
   try {
@@ -177,8 +210,6 @@ const updateControlador = async (req, res) => {
         estadoCivil,
         activo,
         cuentaBancaria,
-        nombreUsuario,
-        contraseña,
       },
       { new: true },
     );

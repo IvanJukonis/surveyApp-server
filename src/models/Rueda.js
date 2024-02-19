@@ -18,6 +18,16 @@ const ruedaSchema = new Schema({
     ref: 'Vehiculo',
     required: true,
   },
+  entrevistaRoboRueda: {
+    type: [Schema.Types.ObjectId],
+    ref: 'EntrevistaRoboRueda',
+    required: true,
+  },
+  inspeccionRoboRueda: {
+    type: [Schema.Types.ObjectId],
+    ref: 'InspeccionRoboRueda',
+    required: true,
+  },
   descripcion: {
     type: String,
     minLength: 3,
@@ -97,6 +107,14 @@ const ruedaSchema = new Schema({
     type: String,
     minLength: 3,
     maxLength: 500,
+  },
+  ruedaEntrevista: {
+    type: Boolean,
+    default: false,
+  },
+  ruedaInspeccion: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const controladorSchema = new Schema({
+  firebaseUid: {
+    type: String,
+  },
   tipo: {
     type: String,
     enum: ['Relevador', 'Controlador', 'Administrativo', 'Consultor'],
@@ -119,18 +122,6 @@ const controladorSchema = new Schema({
     type: Number,
     minLength: 3,
     maxLength: 15,
-    required: true,
-  },
-  nombreUsuario: {
-    type: String,
-    minLength: 3,
-    maxLength: 30,
-    required: true,
-  },
-  contraseña: {
-    type: String,
-    minLength: 3,
-    maxLength: 30,
     required: true,
   },
 });

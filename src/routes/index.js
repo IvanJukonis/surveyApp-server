@@ -14,6 +14,8 @@ const novedad = require('./novedad');
 const siniestro = require('./siniestro');
 const inspeccionSiniestro = require('./inspeccionSiniestro');
 const inspeccionRoboRueda = require('./inspeccionRoboRueda');
+const superAdmin = require('./super-admin');
+const admins = require('./admins');
 
 const router = express.Router();
 
@@ -30,6 +32,8 @@ router.use('/evento', evento);
 router.use('/novedad', novedad);
 router.use('/siniestro', siniestro);
 router.use('/inspeccionSiniestro', inspeccionSiniestro);
+router.use('/super-admin', superAdmin);
+router.use('/admins', admins);
 router.use('/inspeccionRoboRueda', inspeccionRoboRueda);
 
 module.exports = router;
