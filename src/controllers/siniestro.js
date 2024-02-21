@@ -1,13 +1,10 @@
 const Siniestros = require('../models/Siniestro');
 
-const handleErrors = (res, error) => {
-  console.error(error);
-  return res.status(500).json({
-    message: 'Internal Server Error',
-    data: null,
-    error: true,
-  });
-};
+const handleErrors = (res, error) => res.status(500).json({
+  message: 'Internal Server Errorr',
+  data: error,
+  error: true,
+});
 
 const handleNotFound = (res, id) => res.status(404).json({
   message: `Siniestro ${id} not found`,

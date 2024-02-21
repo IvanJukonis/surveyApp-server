@@ -1,4 +1,5 @@
 const Relevadores = require('../models/Relevador');
+const firebaseApp = require('../helper/firebase/firebase-config');
 
 const getRelevador = async (req, res) => {
   try {
@@ -75,12 +76,41 @@ const postRelevador = async (req, res) => {
     estadoCivil,
     activo,
     cuentaBancaria,
-    nombreUsuario,
-    contraseña,
   } = req.body;
 
+  let firebaseUid;
+
   try {
-    const relevadores = await Relevadores.create({
+    const existingRelevador = await Relevadores.findOne({ email });
+    const existingDNIRelevador = await Relevadores.findOne({ dni });
+
+    if (existingRelevador) {
+      return res.status(400).json({
+        message: 'Email already exists',
+        data: null,
+        error: true,
+      });
+    }
+
+    if (existingDNIRelevador) {
+      return res.status(400).json({
+        message: 'This DNI is registered',
+        data: null,
+        error: true,
+      });
+    }
+
+    const newFirebaseUser = await firebaseApp.auth().createUser({
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    firebaseUid = newFirebaseUser.uid;
+
+    await firebaseApp.auth().setCustomUserClaims(newFirebaseUser.uid, { role: 'RELEVADOR' });
+
+    const result = await Relevadores.create({
+      firebaseUid,
       tipo,
       nombre,
       apellido,
@@ -103,17 +133,22 @@ const postRelevador = async (req, res) => {
       estadoCivil,
       activo,
       cuentaBancaria,
-      nombreUsuario,
-      contraseña,
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: 'Relevador created',
-      data: relevadores,
+      data: result,
       error: false,
     });
   } catch (error) {
-    res.status(500).json({
+    if (error.message.includes('E11000 duplicate key error collection')) {
+      return res.status(400).json({
+        message: 'Email already exists',
+        data: null,
+        error: true,
+      });
+    }
+    return res.status(500).json({
       message: error,
       data: null,
       error: true,
@@ -147,8 +182,6 @@ const updateRelevador = async (req, res) => {
     estadoCivil,
     activo,
     cuentaBancaria,
-    nombreUsuario,
-    contraseña,
   } = req.body;
 
   try {
@@ -177,8 +210,6 @@ const updateRelevador = async (req, res) => {
         estadoCivil,
         activo,
         cuentaBancaria,
-        nombreUsuario,
-        contraseña,
       },
       { new: true },
     );

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const relevadorSchema = new Schema({
+const administrativosSchema = new Schema({
   firebaseUid: {
     type: String,
     required: true,
@@ -57,7 +57,7 @@ const relevadorSchema = new Schema({
     maxLength: 15,
   },
   telefono: {
-    type: String,
+    type: Number,
     required: true,
     minLength: 9,
     maxLength: 12,
@@ -127,4 +127,4 @@ const relevadorSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('relevador', relevadorSchema);
+module.exports = mongoose.model('administrativo', administrativosSchema);

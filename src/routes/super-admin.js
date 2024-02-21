@@ -9,7 +9,7 @@ router
   .put('/:id', verifyToken, controllerSuperAdmin.updateAdmin)
   .get('/', verifyToken, controllerSuperAdmin.getAllSuperAdmin)
   .get('/:id', verifyToken, controllerSuperAdmin.getSuperAdminById)
-  .post('/', verifyToken, controllerSuperAdmin.createSuperAdmin)
+  .post('/', controllerSuperAdmin.createSuperAdmin)
   .delete('/:id', verifyToken, controllerSuperAdmin.deleteSuperAdmin);
 
 module.exports = router;
