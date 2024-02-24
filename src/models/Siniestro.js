@@ -6,12 +6,10 @@ const siniestroSchema = new Schema({
   relevador: {
     type: [Schema.Types.ObjectId],
     ref: 'Relevador',
-    required: true,
   },
   controlador: {
     type: [Schema.Types.ObjectId],
     ref: 'Controlador',
-    required: true,
   },
   numSiniestro: {
     type: Number,
@@ -124,7 +122,7 @@ const siniestroSchema = new Schema({
   },
   estado: {
     type: String,
-    enum: ['Sin asignar', 'Asignado', 'Activo', 'Finalizado', 'Controlado', 'Completado'],
+    enum: ['Sin asignar', 'Asignado', 'Inactivo', 'Activo', 'Finalizado', 'Controlado', 'Completado'],
   },
   autorizacion: {
     type: String,
@@ -132,9 +130,13 @@ const siniestroSchema = new Schema({
     maxLength: 500,
   },
   fechaFinalizacion: {
-    type: String,
-    minLength: 3,
-    maxLength: 500,
+    type: Date,
+  },
+  fechaContactoAsegurado: {
+    type: Date,
+  },
+  fechaContactoTercero: {
+    type: Date,
   },
   statsSolicitudCorreccion: {
     type: String,
@@ -152,7 +154,7 @@ const siniestroSchema = new Schema({
     type: String,
     enum: ['No', 'Si', 'Moderado'],
   },
-  conlcusionSiniestro: {
+  conclusionSiniestro: {
     type: String,
     minLength: 3,
     maxLength: 500,

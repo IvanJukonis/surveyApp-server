@@ -239,23 +239,35 @@ const updateRelevador = async (req, res) => {
 const deleteRelevador = async (req, res) => {
   const { id } = req.params;
   try {
-    const relevadores = await Relevadores.findByIdAndDelete(id);
-    if (relevadores) {
-      res.status(200).json({
-        message: `Relevador ${id} deleted`,
-        data: relevadores,
-        error: false,
-      });
-    } else {
-      res.status(404).json({
+    const existingRelevador = await Relevadores.findOne({ _id: id });
+
+    if (!existingRelevador) {
+      return res.status(404).json({
         message: 'Relevador not found',
         data: null,
-        error: false,
+        error: true,
       });
     }
+    const { firebaseUid } = existingRelevador;
+
+    await firebaseApp.auth().deleteUser(firebaseUid);
+
+    const result = await Relevadores.findByIdAndDelete(id);
+    if (!result) {
+      return res.status(404).json({
+        message: 'Relevador not found',
+        data: null,
+        error: true,
+      });
+    }
+    return res.status(200).json({
+      message: 'Relevador deleted',
+      data: null,
+      error: false,
+    });
   } catch (error) {
-    res.status(500).json({
-      message: 'Internal Server Error',
+    return res.status(500).json({
+      message: error,
       data: null,
       error: true,
     });
