@@ -46,6 +46,10 @@ const novedadSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  responsable: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('novedad', novedadSchema);

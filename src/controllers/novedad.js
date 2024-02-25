@@ -63,6 +63,7 @@ const postNovedad = async (req, res) => {
     visibilidad,
     informe,
     respuesta,
+    responsable,
   } = req.body;
 
   try {
@@ -77,6 +78,7 @@ const postNovedad = async (req, res) => {
       visibilidad,
       informe,
       respuesta,
+      responsable,
     });
 
     res.status(201).json({
@@ -107,6 +109,7 @@ const updateNovedad = async (req, res) => {
     visibilidad,
     informe,
     respuesta,
+    responsable,
   } = req.body;
 
   try {
@@ -123,6 +126,7 @@ const updateNovedad = async (req, res) => {
         visibilidad,
         informe,
         respuesta,
+        responsable,
       },
       { new: true },
     );
