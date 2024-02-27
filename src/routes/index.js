@@ -16,6 +16,7 @@ const inspeccionSiniestro = require('./inspeccionSiniestro');
 const inspeccionRoboRueda = require('./inspeccionRoboRueda');
 const superAdmin = require('./super-admin');
 const administrativo = require('./administrativo');
+const consultor = require('./consultor');
 
 const router = express.Router();
 
@@ -35,5 +36,6 @@ router.use('/inspeccionSiniestro', inspeccionSiniestro);
 router.use('/super-admin', superAdmin);
 router.use('/administrativo', administrativo);
 router.use('/inspeccionRoboRueda', inspeccionRoboRueda);
+router.use('/consultor', consultor);
 
 module.exports = router;

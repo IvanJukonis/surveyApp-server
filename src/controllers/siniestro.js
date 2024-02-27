@@ -57,6 +57,7 @@ const postSiniestro = async (req, res) => {
   const {
     relevador,
     controlador,
+    consultor,
     statsSolicitudCorreccion,
     statsGramaticaProlijidad,
     statsDesarrolloSiniestro,
@@ -95,6 +96,7 @@ const postSiniestro = async (req, res) => {
     const siniestro = await Siniestros.create({
       relevador,
       controlador,
+      consultor,
       statsSolicitudCorreccion,
       statsGramaticaProlijidad,
       statsDesarrolloSiniestro,
@@ -144,6 +146,7 @@ const updateSiniestro = async (req, res) => {
   const {
     relevador,
     controlador,
+    consultor,
     statsSolicitudCorreccion,
     statsGramaticaProlijidad,
     statsDesarrolloSiniestro,
@@ -184,6 +187,7 @@ const updateSiniestro = async (req, res) => {
       {
         relevador,
         controlador,
+        consultor,
         statsSolicitudCorreccion,
         statsGramaticaProlijidad,
         statsDesarrolloSiniestro,

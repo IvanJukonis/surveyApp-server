@@ -11,6 +11,10 @@ const siniestroSchema = new Schema({
     type: [Schema.Types.ObjectId],
     ref: 'Controlador',
   },
+  consultor: {
+    type: [Schema.Types.ObjectId],
+    ref: 'Consultor',
+  },
   numSiniestro: {
     type: Number,
     minLength: 3,
