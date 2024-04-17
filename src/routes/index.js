@@ -13,6 +13,7 @@ const evento = require('./evento');
 const novedad = require('./novedad');
 const siniestro = require('./siniestro');
 const inspeccionSiniestro = require('./inspeccionSiniestro');
+// eslint-disable-next-line import/no-unresolved
 const inspeccionRoboRueda = require('./inspeccionRoboRueda');
 const superAdmin = require('./super-admin');
 const administrativo = require('./administrativo');
